@@ -1,7 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": ["./apps/client/tsconfig.json"],
+    "project": "./tsconfig.json",
     "ecmaVersion": 12,
     "sourceType": "module",
     "ecmaFeatures": {
@@ -12,13 +12,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
+  "extends": ["airbnb", "airbnb/hooks", "plugin:@typescript-eslint/recommended", "prettier"],
   "settings": {
     "react": {
       "version": "detect"
@@ -29,7 +23,6 @@
     "react/react-in-jsx-scope": "off",
     "react/no-unescaped-entities": "off",
     "react/prop-types": "off",
-    "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unused-vars": [
       "error",
