@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@components/ui/card';
 import { Input } from '@components/ui/input';
-import { SmileIcon } from '@/components/Icons';
 import { useSocket } from '@hooks/useSocket';
 import ErrorCharacter from '@components/ErrorCharacter';
-import { AuthContext } from '@/contexts/AuthContext';
 import { createPortal } from 'react-dom';
+import { AuthContext } from '@/contexts/AuthContext';
+import { SmileIcon } from '@/components/Icons';
 import ChatEndModal from './ChatEndModal';
 
 interface Chat {
@@ -16,7 +16,7 @@ interface Chat {
 
 const chatServerUrl = import.meta.env.VITE_CHAT_SERVER_URL;
 
-const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boolean }) => {
+function ChatContainer({ roomId, isProducer }: { roomId: string; isProducer: boolean }) {
   const { isLoggedIn } = useContext(AuthContext);
   // 채팅 방 입장
   const [isJoinedRoom, setIsJoinedRoom] = useState(false);
@@ -37,10 +37,10 @@ const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boo
 
   const setUpRoom = async (isProducer: boolean) => {
     if (isProducer) {
-      socket?.emit('createRoom', { roomId: roomId });
+      socket?.emit('createRoom', { roomId });
     } else {
       // 채팅방 입장
-      socket?.emit('joinRoom', { roomId: roomId }, () => {});
+      socket?.emit('joinRoom', { roomId }, () => {});
       // 채팅방 종료 이벤트
       socket?.on('chatClosed', () => {
         setShowModal(true);
@@ -62,7 +62,7 @@ const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boo
 
   const handleSendChat = () => {
     if (inputValue.trim() && socket) {
-      socket.emit('chat', { roomId: roomId, message: inputValue });
+      socket.emit('chat', { roomId, message: inputValue });
     }
     setInputValue('');
   };
@@ -142,6 +142,6 @@ const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boo
       {showModal && createPortal(<ChatEndModal setShowModal={setShowModal} />, document.body)}
     </>
   );
-};
+}
 
 export default ChatContainer;

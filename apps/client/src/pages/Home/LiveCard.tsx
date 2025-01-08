@@ -8,7 +8,7 @@ interface LiveCardProps {
   thumbnailUrl: string;
 }
 
-const LiveCard = ({ liveId, title, userId, profileUrl, thumbnailUrl }: LiveCardProps) => {
+function LiveCard({ liveId, title, userId, profileUrl, thumbnailUrl }: LiveCardProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -44,6 +44,6 @@ const LiveCard = ({ liveId, title, userId, profileUrl, thumbnailUrl }: LiveCardP
       </div>
     </div>
   );
-};
+}
 
 export default LiveCard;

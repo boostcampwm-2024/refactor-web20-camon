@@ -1,10 +1,11 @@
-import BroadcastTitle from './BroadcastTitle';
 import ChatContainer from '@components/ChatContainer';
 import ErrorCharacter from '@components/ErrorCharacter';
 import { useProducer } from '@hooks/useProducer';
 import { useRoom } from '@hooks/useRoom';
 import { useSocket } from '@hooks/useSocket';
 import { useTransport } from '@hooks/useTransport';
+import { Button } from '@components/ui/button';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   MicrophoneOffIcon,
   MicrophoneOnIcon,
@@ -13,8 +14,7 @@ import {
   ScreenShareIcon,
   ScreenShareIconOff,
 } from '@/components/Icons';
-import { Button } from '@components/ui/button';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import BroadcastTitle from './BroadcastTitle';
 import useScreenShare from '@/hooks/useScreenShare';
 import BroadcastPlayer from './BroadcastPlayer';
 import { Tracks } from '@/types/mediasoupTypes';
@@ -72,7 +72,7 @@ function Broadcast() {
   }, []);
 
   useEffect(() => {
-    tracksRef.current['mediaAudio'] = mediaStream?.getAudioTracks()[0];
+    tracksRef.current.mediaAudio = mediaStream?.getAudioTracks()[0];
 
     axiosInstance.get('/v1/members/info').then(response => {
       if (response.data.success) {
@@ -204,7 +204,7 @@ function Broadcast() {
               </div>
             </div>
           </div>
-          <ChatContainer roomId={roomId} isProducer={true} />
+          <ChatContainer roomId={roomId} isProducer />
         </>
       )}
     </div>

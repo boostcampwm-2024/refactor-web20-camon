@@ -1,6 +1,6 @@
+import { useForm } from 'react-hook-form';
 import IconButton from '@/components/IconButton';
 import { SearchIcon } from '@/components/Icons';
-import { useForm } from 'react-hook-form';
 
 interface SearchProps {
   onSearch: (keyword: string) => void;

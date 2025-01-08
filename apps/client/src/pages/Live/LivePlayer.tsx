@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@components/ui/select';
-import { PlayIcon, PauseIcon, VolumeOffIcon, VolumeOnIcon, ExpandIcon } from '@/components/Icons';
 import { Socket } from 'socket.io-client';
+import { PlayIcon, PauseIcon, VolumeOffIcon, VolumeOnIcon, ExpandIcon } from '@/components/Icons';
 import ErrorCharacter from '@/components/ErrorCharacter';
 
 interface Errors {
@@ -73,14 +73,14 @@ function LivePlayer({ mediaStream, socket, transportId, errors }: LivePlayerProp
     <>
       {socketError || transportError || consumerError ? (
         <div className="flex w-full h-full justify-center items-center">
-          <ErrorCharacter size={400} message={`방송 연결 중 에러가 발생했습니다`} />
+          <ErrorCharacter size={400} message="방송 연결 중 에러가 발생했습니다" />
         </div>
       ) : (
         <section className="relative w-full h-full rounded-xl flex justify-center">
           <video
             ref={videoRef}
             autoPlay
-            muted={isAudioEnabled ? false : true}
+            muted={!isAudioEnabled}
             className="absolute top-0 left-0 h-full w-full bg-surface-alt"
           />
           <div className="absolute bottom-4 left-0 right-0 px-6 text-text-default h-6 flex flex-row justify-between items-center">

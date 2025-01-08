@@ -1,9 +1,9 @@
-import Modal from '@/components/Modal';
-import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { Socket } from 'socket.io-client';
+import { Button } from '@/components/ui/button';
+import Modal from '@/components/Modal';
 
 interface FormInput {
   title: string;
@@ -28,14 +28,14 @@ function RecordButton({ socket, roomId }: RecordButtonProps) {
 
   const handleStartRecording = () => {
     if (!socket?.connected || !roomId) return;
-    socket.emit('startRecord', { roomId: roomId }, (response: { success: boolean }) => {
+    socket.emit('startRecord', { roomId }, (response: { success: boolean }) => {
       if (response.success) setIsRecording(true);
     });
   };
 
   const handleStopRecording = (data: FormInput) => {
     if (!socket?.connected || !roomId) return;
-    socket.emit('stopRecord', { roomId: roomId, title: data.title }, (response: { success: boolean }) => {
+    socket.emit('stopRecord', { roomId, title: data.title }, (response: { success: boolean }) => {
       if (response.success) {
         setIsEditing(false);
         setIsRecording(false);

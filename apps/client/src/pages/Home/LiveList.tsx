@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
+import axiosInstance from '@services/axios';
 import FieldFilter from './FieldFilter';
 import LiveCard from './LiveCard';
 import { LivePreviewInfo } from '@/types/homeTypes';
-import { useEffect, useState } from 'react';
-import axiosInstance from '@services/axios';
 import Search from './Search';
 import { Field } from '@/types/liveTypes';
 import { useIntersect } from '@/hooks/useIntersect';
@@ -39,7 +39,7 @@ function LiveList() {
         const { broadcasts, nextCursor } = response.data.data;
         setLiveList(broadcasts);
         setCursor(nextCursor);
-        setHasNext(nextCursor ? true : false);
+        setHasNext(!!nextCursor);
       }
     });
   };
@@ -85,7 +85,7 @@ function LiveList() {
             <div>방송 정보가 없습니다.</div>
           )}
         </div>
-        <div ref={ref} className="h-1"></div>
+        <div ref={ref} className="h-1" />
       </div>
     </div>
   );

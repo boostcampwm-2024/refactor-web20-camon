@@ -1,7 +1,7 @@
-import { PlayIcon } from '@/components/Icons';
-import { RecordData } from '.';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { PlayIcon } from '@/components/Icons';
+import { RecordData } from '.';
 import axiosInstance from '@/services/axios';
 import ErrorCharacter from '@/components/ErrorCharacter';
 

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import WelcomeCharacter from '@components/WelcomeCharacter';
-import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@components/ui/button';
 import { createPortal } from 'react-dom';
 import Modal from '@components/Modal';
 import { GithubIcon, GoogleIcon } from '@components/Icons';
+import { useAuth } from '@/hooks/useAuth';
 import axiosInstance from '@/services/axios';
 
 function LogInButton() {

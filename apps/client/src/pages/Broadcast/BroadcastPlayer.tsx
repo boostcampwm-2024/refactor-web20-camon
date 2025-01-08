@@ -1,6 +1,6 @@
+import { useEffect, useRef } from 'react';
 import { RESOLUTION_OPTIONS } from '@/constants/videoOptions';
 import { Tracks } from '@/types/mediasoupTypes';
-import { useEffect, useRef } from 'react';
 
 interface BroadcastPlayerProps {
   mediaStream: MediaStream | null;
@@ -41,11 +41,11 @@ function BroadcastPlayer({
   }, [isScreenSharing, screenStream]);
 
   useEffect(() => {
-    tracksRef.current['mediaAudio'] = mediaStream?.getAudioTracks()[0];
+    tracksRef.current.mediaAudio = mediaStream?.getAudioTracks()[0];
   }, [mediaStream]);
 
   useEffect(() => {
-    tracksRef.current['screenAudio'] = screenStream?.getAudioTracks()[0];
+    tracksRef.current.screenAudio = screenStream?.getAudioTracks()[0];
   }, [screenStream]);
 
   // 미디어스트림 캔버스에 넣기
@@ -53,8 +53,8 @@ function BroadcastPlayer({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    canvas.width = RESOLUTION_OPTIONS['high'].width;
-    canvas.height = RESOLUTION_OPTIONS['high'].height;
+    canvas.width = RESOLUTION_OPTIONS.high.width;
+    canvas.height = RESOLUTION_OPTIONS.high.height;
 
     const context = canvas.getContext('2d');
     if (!context) return;
@@ -99,7 +99,7 @@ function BroadcastPlayer({
 
     const startDrawing = async () => {
       draw();
-      tracksRef.current['video'] = canvas.captureStream(30).getVideoTracks()[0];
+      tracksRef.current.video = canvas.captureStream(30).getVideoTracks()[0];
       videoRef.current?.play();
       screenShareRef.current?.play();
       if (!isStreamReady) setIsStreamReady(true);
@@ -134,8 +134,8 @@ function BroadcastPlayer({
       />
       <canvas
         ref={canvasRef}
-        width={RESOLUTION_OPTIONS['high'].width}
-        height={RESOLUTION_OPTIONS['high'].height}
+        width={RESOLUTION_OPTIONS.high.width}
+        height={RESOLUTION_OPTIONS.high.height}
         className={`absolute top-0 left-0 w-full h-full bg-black object-cover ${
           !isScreenSharing || !isVideoEnabled ? 'hidden' : ''
         }`}

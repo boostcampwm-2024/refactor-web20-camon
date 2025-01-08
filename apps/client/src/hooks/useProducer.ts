@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Transport, Device, Producer } from 'mediasoup-client/lib/types';
-import { ConnectTransportResponse, TransportInfo } from '@/types/mediasoupTypes';
 import { Socket } from 'socket.io-client';
+import { ConnectTransportResponse, TransportInfo } from '@/types/mediasoupTypes';
 import { checkDependencies } from '@/utils/utils';
 import { ENCODING_OPTIONS } from '@/constants/videoOptions';
 
@@ -102,13 +102,13 @@ export const useProducer = ({
 
     mediaStream.getTracks().forEach(track => {
       const producerConfig: Record<string, unknown> = {
-        track: track,
+        track,
         stopTracks: false,
       };
 
       if (track.kind === 'video') {
-        producerConfig['encodings'] = ENCODING_OPTIONS;
-        producerConfig['codecOptions'] = {
+        producerConfig.encodings = ENCODING_OPTIONS;
+        producerConfig.codecOptions = {
           videoGoogleStartBitrate: 1000,
         };
       }

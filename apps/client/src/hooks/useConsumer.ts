@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Transport, Device, MediaKind } from 'mediasoup-client/lib/types';
-import { ConnectTransportResponse, TransportInfo } from '@/types/mediasoupTypes';
 import { Socket } from 'socket.io-client';
 import { checkDependencies } from '@utils/utils';
+import { ConnectTransportResponse, TransportInfo } from '@/types/mediasoupTypes';
 
 interface UseConsumerProps {
   socket: Socket | null;

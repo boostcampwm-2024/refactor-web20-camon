@@ -2,8 +2,8 @@ import * as mediasoupClient from 'mediasoup-client';
 import { useEffect, useState } from 'react';
 import { RtpCapabilities } from 'mediasoup-client/lib/RtpParameters';
 import { Device } from 'mediasoup-client/lib/types';
-import { checkDependencies } from '@/utils/utils';
 import { Socket } from 'socket.io-client';
+import { checkDependencies } from '@/utils/utils';
 import { TransportInfo } from '@/types/mediasoupTypes';
 
 interface UseTransportProps {
@@ -56,7 +56,7 @@ export const useTransport = ({ socket, roomId, isProducer = false }: UseTranspor
       return;
     }
 
-    socket.emit('createTransport', { roomId: roomId, isProducer }, (response: TransportInfo) => {
+    socket.emit('createTransport', { roomId, isProducer }, (response: TransportInfo) => {
       setTransportInfo(response);
     });
   };

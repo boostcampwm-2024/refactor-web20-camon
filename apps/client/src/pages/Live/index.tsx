@@ -1,12 +1,12 @@
 import ChatContainer from '@components/ChatContainer';
 import ErrorCharacter from '@components/ErrorCharacter';
-import LiveCamperInfo from './LiveCamperInfo';
 import { useConsumer } from '@hooks/useConsumer';
 import { useSocket } from '@hooks/useSocket';
 import { useTransport } from '@hooks/useTransport';
-import LivePlayer from './LivePlayer';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import LivePlayer from './LivePlayer';
+import LiveCamperInfo from './LiveCamperInfo';
 
 const socketUrl = import.meta.env.VITE_MEDIASERVER_URL;
 

@@ -1,9 +1,9 @@
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { UserData } from '.';
-import { useForm } from 'react-hook-form';
 import { Field } from '@/types/liveTypes';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
 import axiosInstance from '@/services/axios';
 import { useToast } from '@/hooks/useToast';
 

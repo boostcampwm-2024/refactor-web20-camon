@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import App from './App';
 import Home from '@pages/Home';
 import Profile from '@pages/Profile';
 import Live from '@pages/Live';
 import Broadcast from '@pages/Broadcast';
 import Auth from '@pages/Auth';
 import Record from '@pages/Record';
+import App from './App';
 import ProtectedRoute from './ProtectedRoute';
 
 const routerOptions = {

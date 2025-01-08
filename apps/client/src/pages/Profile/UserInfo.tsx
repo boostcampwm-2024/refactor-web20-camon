@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
 import ErrorCharacter from '@/components/ErrorCharacter';
 import { BlogIcon, EditIcon, GithubIcon, LinkedInIcon, MailIcon } from '@/components/Icons';
 import LoadingCharacter from '@/components/LoadingCharacter';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useEffect, useState } from 'react';
 import { UserData } from '.';
 
 interface UserInfoProps {
