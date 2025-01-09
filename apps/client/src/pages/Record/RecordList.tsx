@@ -14,12 +14,14 @@ function RecordList(props: RecordListProps) {
   const { attendanceId } = useParams<{ attendanceId: string }>();
   const [error, setError] = useState<string>('');
 
+  const { onClickList } = props;
+
   useEffect(() => {
     axiosInstance.get(`/v1/records/${attendanceId}`).then(response => {
       if (response.data.success) setRecordList(response.data.data.records);
       else setError(response.data.message);
     });
-  }, []);
+  }, [attendanceId]);
 
   return (
     <div className="flex h-full w-full border border-border-default rounded p-5 overflow-hidden">
@@ -30,12 +32,13 @@ function RecordList(props: RecordListProps) {
       ) : (
         <div className="h-full w-full overflow-y-auto">
           <div className="flex flex-col gap-6">
-            {recordList.map((record: RecordData, idx: number) => (
-              <div
-                key={idx}
+            {recordList.map((record: RecordData) => (
+              <button
+                key={record.recordId}
+                type="button"
                 className="flex flex-row w-full h-12 justify-center items-center rounded gap-3 overflow-hidden bg-surface-alt cursor-pointer"
                 onClick={() =>
-                  props.onClickList({
+                  onClickList({
                     recordId: record.recordId,
                     title: record.title,
                     video: record.video,
@@ -45,7 +48,7 @@ function RecordList(props: RecordListProps) {
               >
                 <PlayIcon />
                 <p className="w-4/5 text-text-default text-display-medium16 truncate">{record.title}</p>
-              </div>
+              </button>
             ))}
           </div>
         </div>
