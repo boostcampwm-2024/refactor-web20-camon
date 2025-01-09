@@ -5,7 +5,7 @@ import { useRoom } from '@hooks/useRoom';
 import { useSocket } from '@hooks/useSocket';
 import { useTransport } from '@hooks/useTransport';
 import { Button } from '@components/ui/button';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   MicrophoneOffIcon,
   MicrophoneOnIcon,
@@ -69,67 +69,25 @@ function Broadcast() {
     } else {
       document.querySelector('html')?.removeAttribute('data-theme');
     }
-  }, []);
+  }, [theme]);
 
-  useEffect(() => {
-    tracksRef.current.mediaAudio = mediaStream?.getAudioTracks()[0];
-
-    axiosInstance.get('/v1/members/info').then(response => {
-      if (response.data.success) {
-        setTitle(`${response.data.data.camperId}님의 방송`);
+  const stopBroadcast = useCallback(
+    (e?: BeforeUnloadEvent) => {
+      if (e) {
+        e.preventDefault();
+        e.returnValue = '';
       }
-    });
-
-    window.addEventListener('beforeunload', stopBroadcast);
-    return () => {
-      window.removeEventListener('beforeunload', stopBroadcast);
-    };
-  }, []);
-
-  useEffect(() => {
-    changeTrack();
-  }, [isVideoEnabled, isScreenSharing]);
-
-  const changeTrack = async () => {
-    const currentProducer = producers.get('video');
-    if (!currentProducer) return;
-
-    currentProducer.pause();
-
-    let newTrack = null;
-
-    if (isVideoEnabled && isScreenSharing) {
-      newTrack = tracksRef.current.video || null;
-    } else if (isVideoEnabled && !isScreenSharing) {
-      newTrack = mediaStream?.getVideoTracks()[0] || null;
-    } else if (!isVideoEnabled && isScreenSharing) {
-      newTrack = screenStream?.getVideoTracks()[0] || null;
-    }
-
-    if (isVideoEnabled && mediaStream) mediaStream.getVideoTracks()[0].enabled = true;
-    if (isScreenSharing && screenStream) screenStream.getVideoTracks()[0].enabled = true;
-
-    await currentProducer.replaceTrack({ track: newTrack });
-
-    if (newTrack) {
-      currentProducer.resume();
-    }
-  };
-
-  const stopBroadcast = (e?: BeforeUnloadEvent) => {
-    if (e) {
-      e.preventDefault();
-      e.returnValue = '';
-    }
-    if (socket) {
-      socket.emit('stopBroadcast', { roomId });
-      socket.disconnect();
-      mediaStream?.getTracks().forEach(track => {
-        track.stop();
-      });
-    }
-    transport?.close();
-  };
+      if (socket) {
+        socket.emit('stopBroadcast', { roomId });
+        socket.disconnect();
+        mediaStream?.getTracks().forEach(track => {
+          track.stop();
+        });
+      }
+      transport?.close();
+    },
+    [socket, mediaStream, roomId, transport],
+  );
 
   const handleCheckout = () => {
     stopBroadcast();
@@ -149,6 +107,51 @@ function Broadcast() {
       if (tracksRef.current.mediaAudio) tracksRef.current.mediaAudio.enabled = true;
     }
   };
+
+  useEffect(() => {
+    tracksRef.current.mediaAudio = mediaStream?.getAudioTracks()[0];
+
+    axiosInstance.get('/v1/members/info').then(response => {
+      if (response.data.success) {
+        setTitle(`${response.data.data.camperId}님의 방송`);
+      }
+    });
+
+    window.addEventListener('beforeunload', stopBroadcast);
+    return () => {
+      window.removeEventListener('beforeunload', stopBroadcast);
+    };
+  }, [mediaStream, stopBroadcast]);
+
+  useEffect(() => {
+    const changeTrack = async () => {
+      const currentProducer = producers.get('video');
+      if (!currentProducer) return;
+
+      currentProducer.pause();
+
+      let newTrack = null;
+
+      if (isVideoEnabled && isScreenSharing) {
+        newTrack = tracksRef.current.video || null;
+      } else if (isVideoEnabled && !isScreenSharing) {
+        newTrack = mediaStream?.getVideoTracks()[0] || null;
+      } else if (!isVideoEnabled && isScreenSharing) {
+        newTrack = screenStream?.getVideoTracks()[0] || null;
+      }
+
+      if (isVideoEnabled && mediaStream) mediaStream.getVideoTracks()[0].enabled = true;
+      if (isScreenSharing && screenStream) screenStream.getVideoTracks()[0].enabled = true;
+
+      await currentProducer.replaceTrack({ track: newTrack });
+
+      if (newTrack) {
+        currentProducer.resume();
+      }
+    };
+
+    changeTrack();
+  }, [isVideoEnabled, isScreenSharing, mediaStream, screenStream, producers]);
 
   if (socketError || roomError || transportError || screenShareError) {
     mediaStream?.getTracks().forEach((track: MediaStreamTrack) => track.stop());
@@ -182,15 +185,22 @@ function Broadcast() {
             <BroadcastTitle currentTitle={title} onTitleChange={handleBroadcastTitle} />
             <div className="flex justify-between items-center m-4">
               <div className="flex justify-around gap-2">
-                <Button onClick={handleCheckout} className="bg-surface-brand-default hover:hover:bg-surface-brand-alt">
+                <Button
+                  type="button"
+                  onClick={handleCheckout}
+                  className="bg-surface-brand-default hover:hover:bg-surface-brand-alt"
+                >
                   체크아웃
                 </Button>
                 <RecordButton socket={socket} roomId={roomId} />
               </div>
 
               <div className="flex items-center gap-4">
-                <button onClick={toggleVideo}>{isVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}</button>
+                <button type="button" onClick={toggleVideo}>
+                  {isVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
+                </button>
                 <button
+                  type="button"
                   onClick={() => {
                     toggleAudio();
                     playPauseAudio();
@@ -198,7 +208,7 @@ function Broadcast() {
                 >
                   {isAudioEnabled ? <MicrophoneOnIcon /> : <MicrophoneOffIcon />}
                 </button>
-                <button onClick={toggleScreenShare}>
+                <button type="button" onClick={toggleScreenShare}>
                   {isScreenSharing ? <ScreenShareIcon /> : <ScreenShareIconOff />}
                 </button>
               </div>
