@@ -20,7 +20,7 @@ const chatServerUrl = import.meta.env.VITE_CHAT_SERVER_URL;
 function ChatContainer({ roomId, isProducer }: { roomId: string; isProducer: boolean }) {
   const { isLoggedIn } = useContext(AuthContext);
   // 채팅 방 입장
-  const [isJoinedRoom, setIsJoinedRoom] = useState(false);
+  const isJoinedRoomRef = useRef(false);
   // 채팅 전송
   const { socket, isConnected, socketError } = useSocket(chatServerUrl);
   const [chattings, setChattings] = useState<Chat[]>([]);
@@ -57,10 +57,9 @@ function ChatContainer({ roomId, isProducer }: { roomId: string; isProducer: boo
   const handleClickEmoticon = () => {
     alert('구현 예정');
   };
-
   // 채팅방 입장
   useEffect(() => {
-    if (!isConnected || !socket || !roomId) return undefined;
+    if (!isConnected || !socket || !roomId || isJoinedRoomRef.current) return;
 
     const setUpRoom = async () => {
       if (isProducer) {
@@ -70,15 +69,14 @@ function ChatContainer({ roomId, isProducer }: { roomId: string; isProducer: boo
         socket?.emit('joinRoom', { roomId }, () => {});
         // 채팅방 종료 이벤트
       }
-      setIsJoinedRoom(true);
+      isJoinedRoomRef.current = true;
     };
-
-    if (!isJoinedRoom) setUpRoom();
-  }, [isConnected, roomId, socket, isProducer]);
+    setUpRoom();
+  }, [isConnected, socket, roomId, isProducer]);
 
   // 채팅 이벤트 등록/해제
   useEffect(() => {
-    if (!socket || !isConnected) return undefined;
+    if (!socket || !isConnected) return () => {};
 
     const handleReceiveChat = (response: Chat) => {
       const { camperId, name, message } = response;
