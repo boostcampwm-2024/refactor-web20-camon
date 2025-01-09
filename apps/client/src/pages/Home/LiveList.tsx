@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import axiosInstance from '@services/axios';
 import FieldFilter from './FieldFilter';
 import LiveCard from './LiveCard';
@@ -14,15 +14,8 @@ function LiveList() {
   const [hasNext, setHasNext] = useState(true);
   const [cursor, setCursor] = useState<string | null>(null);
   const [field, setField] = useState<Field>('');
-  const ref = useIntersect({
-    onIntersect: (entry, observer) => {
-      observer.unobserve(entry.target);
-      if (hasNext && cursor) getLiveList();
-    },
-    options: { threshold: 0.3 },
-  });
 
-  const getLiveList = () => {
+  const getLiveList = useCallback(() => {
     axiosInstance.get('/v1/broadcasts', { params: { field, cursor, limit: LIMIT } }).then(response => {
       if (response.data.success) {
         const { broadcasts, nextCursor } = response.data.data;
@@ -31,17 +24,27 @@ function LiveList() {
         if (!nextCursor) setHasNext(false);
       }
     });
-  };
+  }, [field, cursor]);
 
-  const hanldeFilterField = (field: Field) => {
-    axiosInstance.get('/v1/broadcasts', { params: { field, cursor: null, limit: LIMIT } }).then(response => {
-      if (response.data.success) {
-        const { broadcasts, nextCursor } = response.data.data;
-        setLiveList(broadcasts);
-        setCursor(nextCursor);
-        setHasNext(!!nextCursor);
-      }
-    });
+  const ref = useIntersect({
+    onIntersect: (entry, observer) => {
+      observer.unobserve(entry.target);
+      if (hasNext && cursor) getLiveList();
+    },
+    options: { threshold: 0.3 },
+  });
+
+  const hanldeFilterField = (selectedField: Field) => {
+    axiosInstance
+      .get('/v1/broadcasts', { params: { field: selectedField, cursor: null, limit: LIMIT } })
+      .then(response => {
+        if (response.data.success) {
+          const { broadcasts, nextCursor } = response.data.data;
+          setLiveList(broadcasts);
+          setCursor(nextCursor);
+          setHasNext(!!nextCursor);
+        }
+      });
   };
 
   const handleSearch = (keyword: string) => {
@@ -56,7 +59,7 @@ function LiveList() {
 
   useEffect(() => {
     getLiveList();
-  }, []);
+  }, [getLiveList]);
 
   return (
     <div className="flex flex-col w-full flex-1 p-10 justify-start items-center">

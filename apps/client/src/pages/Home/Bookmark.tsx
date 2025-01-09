@@ -71,7 +71,7 @@ function Bookmark() {
         toast({ variant: 'destructive', title: '북마크 조회 실패' });
       }
     });
-  }, []);
+  }, [toast]);
 
   return (
     <>
@@ -85,12 +85,13 @@ function Bookmark() {
                 className="h-14 w-52 bg-surface-alt text-text-strong hover:bg-surface-alt-light relative flex items-center justify-between"
               >
                 <span className="truncate flex-1">{data.name}</span>
-                <div
+                <button
+                  type="button"
                   onClick={e => handleDeleteBookmark(e, data.bookmarkId)}
                   className="flex items-center p-1 hover:text-text-strong hover:cursor-pointer"
                 >
                   <CloseIcon size={36} />
-                </div>
+                </button>
               </Button>
             ))}
 
@@ -108,22 +109,28 @@ function Bookmark() {
               <form onSubmit={handleSubmit(handleAddBookmark)} className="flex flex-col gap-2 w-full">
                 <div className="flex flex-col gap-3 w-full">
                   <div className="flex flex-col w-full">
-                    <label>사이트명</label>
-                    <input
-                      {...register('name', {
-                        required: '북마크 이름을 입력해주세요',
-                      })}
-                      className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
-                    />
+                    <label htmlFor="bookmark-name-input">
+                      사이트명
+                      <input
+                        id="bookmark-name-input"
+                        {...register('name', {
+                          required: '북마크 이름을 입력해주세요',
+                        })}
+                        className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
+                      />
+                    </label>
                   </div>
                   <div className="flex flex-col w-full">
-                    <label>URL</label>
-                    <input
-                      {...register('url', {
-                        required: '저장할 사이트 URL을 입력해주세요',
-                      })}
-                      className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
-                    />
+                    <label htmlFor="bookmark-url-input">
+                      URL
+                      <input
+                        id="bookmark-url-input"
+                        {...register('url', {
+                          required: '저장할 사이트 URL을 입력해주세요',
+                        })}
+                        className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
+                      />
+                    </label>
                   </div>
                   {(errors.name || errors.url) && (
                     <p className="absolute top-11 text-text-danger font-medium text-display-medium12">
