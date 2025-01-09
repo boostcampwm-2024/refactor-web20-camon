@@ -1,7 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json",
+    "project": ["./tsconfig.json"],
     "ecmaVersion": 12,
     "sourceType": "module",
     "ecmaFeatures": {
@@ -31,6 +31,13 @@
         "varsIgnorePattern": "^_", // _ 로 시작하는 변수는 무시
         "ignoreRestSiblings": true
       }
-    ]
+    ],
+    "import/no-unresolved": "off",
+    "import/extensions": ["off"],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/require-default-props": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-param-reassign": ["warn", { "props": false }]
   }
 }

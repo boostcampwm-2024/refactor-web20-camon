@@ -12,7 +12,7 @@ interface EditUserInfoProps {
   toggleEditing: () => void;
 }
 
-interface FormInput {
+export interface FormInput {
   camperId: string | undefined;
   name: string | undefined;
   field: Field | undefined;
@@ -70,74 +70,96 @@ function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full gap-10">
+    <div className="flex flex-col items-center w-full gap-10">
       <Avatar className="w-64 h-64">
         <AvatarImage src={userData?.profileImage} />
         <AvatarFallback>MY</AvatarFallback>
       </Avatar>
       <form onSubmit={handleSubmit(handlePatchUserInfo)} className="flex flex-col w-1/2 gap-5">
-        {(errors.camperId || errors.name || !selectedField) && (
-          <p className="flex justify-end text-text-danger text-display-medium12">
-            {errors.camperId ? errors.camperId.message : errors.name ? errors.name.message : '분야를 선택해주세요'}
-          </p>
-        )}
         {/* ID */}
-        <div className="flex flex-row justify-center items-center">
-          <label className="w-32 text-text-strong text-display-bold24">ID</label>
-          <input
-            {...register('camperId', {
-              required: 'ID를 입력해주세요',
-            })}
-            className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
-          />
+        <div className="relative flex flex-row justify-end items-center">
+          <label htmlFor="camperId-input" className="flex flex-row w-full text-text-strong text-display-bold24">
+            <span className="flex w-32">ID</span>
+            <input
+              id="camperId-input"
+              {...register('camperId', {
+                required: 'ID를 입력해주세요',
+              })}
+              className="flex-1 h-10 bg-transparent border border-default rounded-md focus:border-bold px-3 text-display-medium16 text-text-default"
+            />
+          </label>
+          <p className="absolute top-10 right-0 justify-end text-text-danger text-display-medium12">
+            {errors.camperId && errors.camperId.message}
+          </p>
         </div>
         {/* 이름 */}
-        <div className="flex flex-row justify-center items-center">
-          <label className="w-32 text-text-strong text-display-bold24">이름</label>
-          <input
-            {...register('name', {
-              required: '이름을 입력해주세요',
-            })}
-            className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
-          />
+        <div className="relative flex flex-row items-center">
+          <label htmlFor="name-input" className="flex flex-row w-full text-text-strong text-display-bold24">
+            <span className=" w-32">이름</span>
+            <input
+              id="name-input"
+              {...register('name', {
+                required: '이름을 입력해주세요',
+              })}
+              className="flex-1 h-10 bg-transparent border border-default rounded-md focus:border-bold px-3 text-display-medium16 text-text-default"
+            />
+          </label>
+          <p className="absolute top-10 right-0 text-text-danger text-display-medium12">
+            {errors.name && errors.name.message}
+          </p>
         </div>
         {/* TODO: 입력 검증 */}
         {/* email */}
-        <div className="flex flex-row justify-center items-center">
-          <label className="w-32 text-text-strong text-display-bold24">Email</label>
-          <input
-            {...register('email')}
-            className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
-          />
+        <div className="flex flex-row items-center">
+          <label htmlFor="email-input" className="flex flex-row w-full text-text-strong text-display-bold24">
+            <span className=" w-32">Email</span>
+            <input
+              id="email-input"
+              {...register('email')}
+              className="flex-1 h-10 bg-transparent border border-default rounded-md focus:border-bold px-3 text-display-medium16 text-text-default"
+            />
+          </label>
         </div>
         {/* github */}
-        <div className="flex flex-row justify-center items-center">
-          <label className="w-32 text-text-strong text-display-bold24">Github</label>
-          <input
-            {...register('github')}
-            className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
-          />
+        <div className="flex flex-row items-center">
+          <label htmlFor="github-input" className="flex flex-row w-full text-text-strong text-display-bold24">
+            <span className=" w-32">Github</span>
+            <input
+              id="github-input"
+              {...register('github')}
+              className="flex-1 h-10 bg-transparent border border-default rounded-md focus:border-bold px-3 text-display-medium16 text-text-default"
+            />
+          </label>
         </div>
         {/* blog */}
-        <div className="flex flex-row justify-center items-center">
-          <label className="w-32 text-text-strong text-display-bold24">Blog</label>
-          <input
-            {...register('blog')}
-            className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
-          />
+        <div className="flex flex-row items-center">
+          <label htmlFor="blog-input" className="flex flex-row w-full text-text-strong text-display-bold24">
+            <span className=" w-32">Blog</span>
+            <input
+              id="blog-input"
+              {...register('blog')}
+              className="flex-1 h-10 bg-transparent border border-default rounded-md focus:border-bold px-3 text-display-medium16 text-text-default"
+            />
+          </label>
         </div>
         {/* linkedIn */}
-        <div className="flex flex-row justify-center items-center">
-          <label className="w-32 text-text-strong text-display-bold24">LinkedIn</label>
-          <input
-            {...register('linkedIn')}
-            className="w-full h-10 bg-transparent border border-default rounded-md focus:border-bold px-3"
-          />
+        <div className="flex flex-row items-center">
+          <label htmlFor="linkedIn-input" className="flex flex-row w-full text-text-strong text-display-bold24">
+            <span className="flex w-32">LinkedIn</span>
+
+            <input
+              id="linkedIn-input"
+              {...register('linkedIn')}
+              className="flex-1 h-10 bg-transparent border border-default rounded-md focus:border-bold px-3 text-display-medium16 text-text-default"
+            />
+          </label>
         </div>
         {/* 분야 */}
-        <div className="flex flex-row justify-start items-center">
-          <label className="w-32 text-text-strong text-display-bold24">분야</label>
-          <div className="flex gap-4">
+        <div className="relative flex flex-row w-full justify-start items-center">
+          <span id="field-label" className="w-32 text-text-strong text-display-bold24">
+            분야
+          </span>
+          <div role="group" aria-labelledby="field-label" className="flex flex-1 justify-start gap-4">
             <Button
               type="button"
               onClick={() => handleSelectField('WEB')}
@@ -159,9 +181,12 @@ function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
             >
               IOS
             </Button>
+            <p className="absolute top-10 right-0 text-text-danger text-display-medium12">
+              {selectedField === '' && '분야를 입력해주세요'}
+            </p>
           </div>
         </div>
-        <div className="flex justify-end">
+        <div className="flex w-full justify-end">
           <Button type="submit" className="h-10 shrink-0">
             저장
           </Button>
