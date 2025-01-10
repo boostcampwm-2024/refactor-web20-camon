@@ -19,7 +19,7 @@ export const useIntersect = ({ onIntersect, options }: UseIntersectProps) => {
   );
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current) return undefined;
     const observer = new IntersectionObserver(callback, options);
     observer.observe(ref.current);
     return () => {

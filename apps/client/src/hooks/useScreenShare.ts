@@ -1,9 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 const useScreenShare = () => {
   const screenStreamRef = useRef<MediaStream | null>(null);
   const [screenShareError, setScreenShareError] = useState<Error | null>(null);
   const [isScreenSharing, setIsScreenSharing] = useState(false);
+
+  const endScreenShare = () => {
+    if (screenStreamRef.current) {
+      screenStreamRef.current.getTracks().forEach(track => track.stop());
+    }
+    screenStreamRef.current = null;
+    setIsScreenSharing(false);
+  };
 
   const startScreenShare = async () => {
     try {
@@ -13,8 +21,9 @@ const useScreenShare = () => {
       };
 
       const mediaStream = await navigator.mediaDevices.getDisplayMedia(options);
-      setIsScreenSharing(true);
+      mediaStream.getVideoTracks()[0].onended = endScreenShare;
       screenStreamRef.current = mediaStream;
+      setIsScreenSharing(true);
     } catch (err) {
       if (err instanceof Error) {
         if (err.name !== 'NotAllowedError') {
@@ -26,14 +35,6 @@ const useScreenShare = () => {
     }
   };
 
-  const endScreenShare = async () => {
-    if (screenStreamRef.current) {
-      screenStreamRef.current.getTracks().forEach(track => track.stop());
-    }
-    screenStreamRef.current = null;
-    setIsScreenSharing(false);
-  };
-
   const toggleScreenShare = () => {
     if (isScreenSharing) {
       endScreenShare();
@@ -41,25 +42,6 @@ const useScreenShare = () => {
       startScreenShare();
     }
   };
-
-  useEffect(() => {
-    if (isScreenSharing) {
-      startScreenShare();
-      setIsScreenSharing(false);
-    }
-
-    return () => {
-      endScreenShare();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (screenStreamRef.current) {
-      screenStreamRef.current.getVideoTracks()[0].onended = () => {
-        endScreenShare();
-      };
-    }
-  }, [screenStreamRef.current]);
 
   return {
     screenStream: screenStreamRef.current,

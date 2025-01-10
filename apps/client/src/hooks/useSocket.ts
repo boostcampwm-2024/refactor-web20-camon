@@ -18,7 +18,7 @@ export const useSocket = (url: string) => {
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
-    if (socketRef.current?.connected) return;
+    if (socketRef.current?.connected) return undefined;
     const socket = io(url, {
       withCredentials: true,
       transports: ['websocket', 'polling'],
@@ -49,7 +49,6 @@ export const useSocket = (url: string) => {
     });
 
     socket.on('exception', (error: ExceptionResponse) => {
-      console.error(`socket exception Error: ${error.data.status}`);
       setSocketError(new Error(error.data.message));
     });
 
@@ -58,7 +57,7 @@ export const useSocket = (url: string) => {
         socket.disconnect();
       }
     };
-  }, []);
+  }, [url]);
 
   return {
     socket: socketRef.current,

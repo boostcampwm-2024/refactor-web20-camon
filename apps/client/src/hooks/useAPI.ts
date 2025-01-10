@@ -26,7 +26,7 @@ export const useAPI = <T>(apiInfo: AxiosRequestConfig): APIQueryState<T> => {
     };
 
     fetchData();
-  }, []);
+  }, [apiInfo]);
 
   return { data, isLoading, error };
 };

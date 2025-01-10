@@ -23,7 +23,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     setIsLoggedIn(!!localStorage.getItem('accessToken'));
-  }, []);
+  }, [setIsLoggedIn]);
 
   return { requestLogIn, setLogIn, logout };
 };

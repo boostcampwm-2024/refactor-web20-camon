@@ -38,6 +38,7 @@
     "react/require-default-props": "off",
     "jsx-a11y/media-has-caption": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-param-reassign": ["warn", { "props": false }]
+    "no-param-reassign": ["warn", { "props": false }],
+    "import/prefer-default-export": "off"
   }
 }
