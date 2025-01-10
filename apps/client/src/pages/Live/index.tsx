@@ -30,29 +30,31 @@ export default function Live() {
     isConnected,
   });
 
-  const handleLeaveLive = () => {
-    if (socket && liveId && transportInfo) {
-      socket.emit('leaveBroadcast', { transportId: transportInfo.transportId, roomId: liveId });
-    }
-
-    socket?.disconnect();
-    transport?.close();
-  };
-
-  const preventClose = (e: BeforeUnloadEvent) => {
-    e.preventDefault();
-    handleLeaveLive();
-    e.returnValue = '';
-  };
-
   useEffect(() => {
+    if (!socket || !liveId || !transportInfo || !transport) return undefined;
+
+    const handleLeaveLive = () => {
+      if (socket && liveId && transportInfo) {
+        socket.emit('leaveBroadcast', { transportId: transportInfo.transportId, roomId: liveId });
+      }
+
+      socket?.disconnect();
+      transport?.close();
+    };
+
+    const preventClose = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      handleLeaveLive();
+      e.returnValue = '';
+    };
+
     window.addEventListener('beforeunload', preventClose);
 
     return () => {
       handleLeaveLive();
       window.removeEventListener('beforeunload', preventClose);
     };
-  }, []);
+  }, [socket, liveId, transportInfo, transport]);
 
   return (
     <div className="flex flex-row w-full h-full gap-10 pb-5">

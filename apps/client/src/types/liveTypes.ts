@@ -5,6 +5,8 @@ export interface ContactInfo {
   blog: string;
 }
 
+export type Field = 'WEB' | 'AND' | 'IOS' | '';
+
 export interface LiveInfo {
   title: string;
   camperId: string;
@@ -13,5 +15,3 @@ export interface LiveInfo {
   profileImage: string;
   contacts: ContactInfo;
 }
-
-export type Field = 'WEB' | 'AND' | 'IOS' | '';
