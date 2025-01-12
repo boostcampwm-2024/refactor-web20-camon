@@ -4,18 +4,18 @@ import { Socket } from 'socket.io-client';
 import { PlayIcon, PauseIcon, VolumeOffIcon, VolumeOnIcon, ExpandIcon } from '@/components/Icons';
 import ErrorCharacter from '@/components/ErrorCharacter';
 
-interface Errors {
+type Errors = {
   socketError: Error | null;
   transportError: Error | null;
   consumerError: Error | null;
-}
+};
 
-interface LivePlayerProps {
+type LivePlayerProps = {
   mediaStream: MediaStream | null;
   socket: Socket | null;
   transportId: string | undefined;
   errors: Errors;
-}
+};
 
 type VideoQuality = 'auto' | '480p' | '720p' | '1080p';
 

@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-interface ExceptionData {
+type ExceptionData = {
   status: number;
   message: string;
-}
+};
 
-interface ExceptionResponse {
+type ExceptionResponse = {
   event: string;
   data: ExceptionData;
-}
+};
 
 export const useSocket = (url: string) => {
   const socketRef = useRef<Socket | null>(null);

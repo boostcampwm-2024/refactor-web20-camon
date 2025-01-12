@@ -1,8 +1,4 @@
-interface LoadingCharacterProps {
-  size?: number;
-}
-
-function LoadingCharacter({ size = 300 }: LoadingCharacterProps): JSX.Element {
+function LoadingCharacter({ size = 300 }: { size?: number }): JSX.Element {
   return (
     <div style={{ width: size, height: size }}>
       <svg viewBox="0 0 200 200" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">

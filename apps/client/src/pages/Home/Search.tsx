@@ -2,13 +2,13 @@ import { useForm } from 'react-hook-form';
 import IconButton from '@/components/IconButton';
 import { SearchIcon } from '@/components/Icons';
 
-interface SearchProps {
+type SearchProps = {
   onSearch: (keyword: string) => void;
-}
+};
 
-interface FormInput {
+type FormInput = {
   keyword: string;
-}
+};
 
 function Search({ onSearch }: SearchProps) {
   const { register, handleSubmit } = useForm<FormInput>();

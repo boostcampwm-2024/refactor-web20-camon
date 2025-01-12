@@ -1,7 +1,7 @@
-interface Props {
+type Props = {
   size?: number;
   className?: string;
-}
+};
 
 function WelcomeCharacter({ size, className }: Props) {
   return (

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { RESOLUTION_OPTIONS } from '@/constants/videoOptions';
 import { Tracks } from '@/types/mediasoupTypes';
 
-interface BroadcastPlayerProps {
+type BroadcastPlayerProps = {
   mediaStream: MediaStream | null;
   screenStream: MediaStream | null;
   isVideoEnabled: boolean;
@@ -10,7 +10,7 @@ interface BroadcastPlayerProps {
   isStreamReady: boolean;
   setIsStreamReady: (ready: boolean) => void;
   tracksRef: React.MutableRefObject<Tracks>;
-}
+};
 
 function BroadcastPlayer({
   mediaStream,

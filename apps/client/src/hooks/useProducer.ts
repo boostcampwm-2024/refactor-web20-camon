@@ -5,7 +5,7 @@ import { ConnectTransportResponse, TransportInfo } from '@/types/mediasoupTypes'
 import { checkDependencies } from '@/utils/utils';
 import { ENCODING_OPTIONS } from '@/constants/videoOptions';
 
-interface UseProducerProps {
+type UseProducerProps = {
   socket: Socket | null;
   // tracks: Tracks;
   // isStreamReady: boolean;
@@ -14,14 +14,14 @@ interface UseProducerProps {
   roomId: string;
   device: Device | null;
   transportInfo: TransportInfo | null;
-}
+};
 
-interface UseProducerReturn {
+type UseProducerReturn = {
   transport: Transport | null;
   error: Error | null;
   producerId: string;
   producers: Map<string, Producer>;
-}
+};
 
 export const useProducer = ({
   socket,

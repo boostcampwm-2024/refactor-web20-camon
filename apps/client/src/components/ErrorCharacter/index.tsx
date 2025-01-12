@@ -1,7 +1,7 @@
-interface ErrorCharacterProps {
+type ErrorCharacterProps = {
   size?: number;
   message?: string;
-}
+};
 
 function ErrorCharacter({ size = 300, message = 'Error' }: ErrorCharacterProps): JSX.Element {
   return (

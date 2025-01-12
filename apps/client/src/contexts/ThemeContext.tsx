@@ -2,10 +2,10 @@ import { createContext, useMemo, useState } from 'react';
 
 type Theme = 'light' | 'dark' | null;
 
-interface ThemeContextInterface {
+type ThemeContextInterface = {
   theme: Theme;
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
-}
+};
 
 const currentTheme = localStorage.getItem('theme') ?? null;
 

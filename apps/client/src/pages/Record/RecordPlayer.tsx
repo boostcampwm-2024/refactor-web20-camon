@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import LoadingCharacter from '@/components/LoadingCharacter';
 
-interface RecordPlayerProps {
+type RecordPlayerProps = {
   video: string;
-}
+};
 
 function RecordPlayer(props: RecordPlayerProps) {
   const [isSelectedVideo, setIsSelectedVideo] = useState(false);

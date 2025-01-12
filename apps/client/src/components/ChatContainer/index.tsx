@@ -8,12 +8,12 @@ import { AuthContext } from '@/contexts/AuthContext';
 import { SmileIcon } from '@/components/Icons';
 import ChatEndModal from './ChatEndModal';
 
-interface Chat {
+type Chat = {
   chatId?: string;
   camperId: string;
   name: string;
   message: string;
-}
+};
 
 const chatServerUrl = import.meta.env.VITE_CHAT_SERVER_URL;
 

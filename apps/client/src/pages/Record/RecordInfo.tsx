@@ -1,6 +1,6 @@
-interface RecordInfoProps {
+type RecordInfoProps = {
   title: string;
-}
+};
 
 function RecordInfo(props: RecordInfoProps) {
   const { title } = props;

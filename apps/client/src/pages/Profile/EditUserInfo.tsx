@@ -7,10 +7,10 @@ import { Button } from '@/components/ui/button';
 import axiosInstance from '@/services/axios';
 import { useToast } from '@/hooks/useToast';
 
-interface EditUserInfoProps {
+type EditUserInfoProps = {
   userData: UserData | undefined;
   toggleEditing: () => void;
-}
+};
 
 export interface FormInput {
   camperId: string | undefined;

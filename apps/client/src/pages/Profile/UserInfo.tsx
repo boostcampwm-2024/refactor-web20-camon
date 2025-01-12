@@ -5,12 +5,12 @@ import LoadingCharacter from '@/components/LoadingCharacter';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { UserData } from '.';
 
-interface UserInfoProps {
+type UserInfoProps = {
   userData: UserData | undefined;
   isLoading: boolean;
   error: Error | null;
   toggleEditing: () => void;
-}
+};
 
 function UserInfo({ userData, isLoading, error, toggleEditing }: UserInfoProps) {
   const [showLoading, setShowLoading] = useState(false);

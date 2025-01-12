@@ -5,13 +5,13 @@ import { PlayIcon } from '@/components/Icons';
 import LoadingCharacter from '@/components/LoadingCharacter';
 import axiosInstance from '@/services/axios';
 
-interface AttendanceData {
+type AttendanceData = {
   attendanceId: number;
   date: string;
   startTime: string;
   endTime: string;
   isAttendance: boolean;
-}
+};
 
 function Attendance() {
   const [attendanceList, setAttendanceList] = useState<AttendanceData[]>([]);

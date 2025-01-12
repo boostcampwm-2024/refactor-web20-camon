@@ -1,9 +1,9 @@
 import Modal from '@components/Modal';
 import { useNavigate } from 'react-router-dom';
 
-interface ChatEndModalProps {
+type ChatEndModalProps = {
   setShowModal: (b: boolean) => void;
-}
+};
 
 function ChatEndModal({ setShowModal }: ChatEndModalProps) {
   const navigate = useNavigate();

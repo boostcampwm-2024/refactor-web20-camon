@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
-interface LiveCardProps {
+type LiveCardProps = {
   liveId: string;
   title: string;
   userId: string;
   profileUrl?: string;
   thumbnailUrl: string;
-}
+};
 
 function LiveCard({ liveId, title, userId, profileUrl, thumbnailUrl }: LiveCardProps) {
   const navigate = useNavigate();

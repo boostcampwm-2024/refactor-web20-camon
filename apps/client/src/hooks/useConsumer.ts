@@ -4,24 +4,24 @@ import { Socket } from 'socket.io-client';
 import { checkDependencies } from '@utils/utils';
 import { ConnectTransportResponse, TransportInfo } from '@/types/mediasoupTypes';
 
-interface UseConsumerProps {
+type UseConsumerProps = {
   socket: Socket | null;
   device: Device | null;
   roomId: string | undefined;
   transportInfo: TransportInfo | null;
   isConnected: boolean;
-}
+};
 
-export interface CreateConsumer {
+export type CreateConsumer = {
   consumerId: string;
   producerId: string;
   kind: MediaKind;
   rtpParameters: any;
-}
+};
 
-export interface CreateConsumerResponse {
+export type CreateConsumerResponse = {
   consumers: CreateConsumer[];
-}
+};
 
 export const useConsumer = ({ socket, device, roomId, transportInfo, isConnected }: UseConsumerProps) => {
   const transportRef = useRef<Transport | null>(null);

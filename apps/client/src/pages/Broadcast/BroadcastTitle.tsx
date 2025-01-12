@@ -3,14 +3,14 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { Button } from '@components/ui/button';
 import axiosInstance from '@services/axios';
 
-interface Inputs {
+type Inputs = {
   title: string;
-}
+};
 
-interface BroadcastTitleProps {
+type BroadcastTitleProps = {
   currentTitle: string;
   onTitleChange: (newTitle: string) => void;
-}
+};
 
 function BroadcastTitle({ currentTitle, onTitleChange }: BroadcastTitleProps) {
   const {

@@ -1,7 +1,4 @@
-interface IconProps {
-  size?: number;
-  className?: string;
-}
+import { IconProps } from '.';
 
 function GoogleIcon({ size = 60, className = '' }: IconProps) {
   return (

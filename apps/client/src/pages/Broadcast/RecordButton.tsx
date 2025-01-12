@@ -5,14 +5,14 @@ import { Socket } from 'socket.io-client';
 import { Button } from '@/components/ui/button';
 import Modal from '@/components/Modal';
 
-interface FormInput {
+type FormInput = {
   title: string;
-}
+};
 
-interface RecordButtonProps {
+type RecordButtonProps = {
   socket: Socket | null;
   roomId: string;
-}
+};
 
 function RecordButton({ socket, roomId }: RecordButtonProps) {
   const [isRecording, setIsRecording] = useState(false);

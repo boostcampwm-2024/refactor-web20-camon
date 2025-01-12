@@ -7,21 +7,21 @@ import { Field } from '@/types/liveTypes';
 import ErrorCharacter from '@/components/ErrorCharacter';
 import LoadingCharacter from '@/components/LoadingCharacter';
 
-export interface Contacts {
+export type Contacts = {
   email: string;
   github: string;
   blog: string;
   linkedIn: string;
-}
+};
 
-export interface UserData {
+export type UserData = {
   id: number;
   camperId: string;
   name: string;
   field: Field;
   contacts: Contacts;
   profileImage: string;
-}
+};
 
 export default function Profile() {
   const [userData, setUserData] = useState<UserData | null>(null);

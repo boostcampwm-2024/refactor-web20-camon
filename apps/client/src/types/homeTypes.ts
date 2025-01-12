@@ -1,15 +1,15 @@
 import { Field } from './liveTypes';
 
-export interface LivePreviewInfo {
+export type LivePreviewInfo = {
   broadcastId: string;
   broadcastTitle: string;
   camperId: string;
   profileImage: string;
   thumbnail: string;
   field: Field;
-}
+};
 
-export interface LivePreviewListInfo {
+export type LivePreviewListInfo = {
   broadcasts: LivePreviewInfo[];
   nextCursor: string | null;
-}
+};

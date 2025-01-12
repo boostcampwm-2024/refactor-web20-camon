@@ -8,11 +8,11 @@ import axiosInstance from '@services/axios';
 import { useContext, useEffect, useState } from 'react';
 import { CloseIcon } from '@components/Icons';
 
-interface BookmarkData {
+type BookmarkData = {
   bookmarkId: number;
   name: string;
   url: string;
-}
+};
 
 function Bookmark() {
   const { isLoggedIn } = useContext(AuthContext);

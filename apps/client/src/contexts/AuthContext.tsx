@@ -1,9 +1,9 @@
 import React, { createContext, useMemo, useState } from 'react';
 
-interface AuthContextInterface {
+type AuthContextInterface = {
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 const initialState = {
   isLoggedIn: !!localStorage.getItem('accessToken'),

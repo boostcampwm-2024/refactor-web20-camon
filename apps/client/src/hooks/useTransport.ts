@@ -6,11 +6,11 @@ import { Socket } from 'socket.io-client';
 import { checkDependencies } from '@/utils/utils';
 import { TransportInfo } from '@/types/mediasoupTypes';
 
-interface UseTransportProps {
+type UseTransportProps = {
   socket: Socket | null;
   roomId: string | undefined;
   isProducer: boolean;
-}
+};
 
 export const useTransport = ({ socket, roomId, isProducer = false }: UseTransportProps) => {
   const [transportInfo, setTransportInfo] = useState<TransportInfo | null>(null);

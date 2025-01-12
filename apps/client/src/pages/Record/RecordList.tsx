@@ -5,9 +5,9 @@ import { RecordData } from '.';
 import axiosInstance from '@/services/axios';
 import ErrorCharacter from '@/components/ErrorCharacter';
 
-interface RecordListProps {
+type RecordListProps = {
   onClickList: (data: RecordData) => void;
-}
+};
 
 function RecordList(props: RecordListProps) {
   const [recordList, setRecordList] = useState<RecordData[]>([]);

@@ -4,9 +4,9 @@ import { Field } from '@/types/liveTypes';
 
 const fields: Field[] = ['WEB', 'AND', 'IOS'];
 
-interface FieldFilterProps {
+type FieldFilterProps = {
   onClickFilterButton: (field: Field) => void;
-}
+};
 
 function FieldFilter({ onClickFilterButton }: FieldFilterProps) {
   const [selected, setSelected] = useState<Field>('');
