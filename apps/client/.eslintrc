@@ -1,5 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
+
   "parserOptions": {
     "project": ["./tsconfig.json"],
     "ecmaVersion": 12,
@@ -8,21 +9,37 @@
       "jsx": true
     }
   },
+
   "env": {
     "browser": true,
     "es2021": true
   },
+
   "extends": ["airbnb", "airbnb/hooks", "plugin:@typescript-eslint/recommended", "prettier"],
+
   "settings": {
     "react": {
       "version": "detect"
     }
   },
+
   "plugins": ["prettier"],
+
   "rules": {
+    // React 관련 규칙
     "react/react-in-jsx-scope": "off",
     "react/no-unescaped-entities": "off",
     "react/prop-types": "off",
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+
+    // TypeScript 관련 규칙
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-unused-vars": [
       "error",
@@ -32,13 +49,21 @@
         "ignoreRestSiblings": true
       }
     ],
+
+    // Import/Export 관련 규칙
     "import/no-unresolved": "off",
     "import/extensions": ["off"],
-    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "react/require-default-props": "off",
+    "import/prefer-default-export": "off",
+
+    // 접근성 관련 규칙
     "jsx-a11y/media-has-caption": "off",
-    "react/jsx-props-no-spreading": "off",
-    "no-param-reassign": ["warn", { "props": false }],
-    "import/prefer-default-export": "off"
+
+    // 기타 규칙
+    "no-param-reassign": [
+      "warn",
+      {
+        "props": false
+      }
+    ]
   }
 }
