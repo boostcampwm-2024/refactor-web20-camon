@@ -50,7 +50,7 @@
     "postcss": "^8.4.47",
     "prettier": "*",
     "tailwindcss": "^3.4.14",
-    "typescript": "workspace:*",
+    "typescript": "*",
     "vite": "^5.4.10"
   }
 }
