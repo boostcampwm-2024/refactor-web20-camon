@@ -1,21 +1,18 @@
 import { Outlet } from 'react-router-dom';
-import Header from '@/shared/components/Header';
-import { AuthProvider } from '@/shared/contexts/AuthContext';
-import { Toaster } from '@/shared/components/ui/toaster';
-import FloatingButton from '@/shared/components/FloatingButton';
-import { ThemeProvider } from '@/shared/contexts/ThemeContext';
+import Header from '@/shared/ui/Header';
+import { Toaster } from '@/shared/ui/shadcn/toaster';
+import FloatingButton from '@/shared/ui/FloatingButton';
+import { Providers } from '../providers';
 
 export function Layout() {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <Header />
-        <main className="pt-[74px] h-full">
-          <Outlet />
-        </main>
-        <Toaster />
-        <FloatingButton />
-      </ThemeProvider>
-    </AuthProvider>
+    <Providers>
+      <Header />
+      <main className="pt-[74px] h-full">
+        <Outlet />
+      </main>
+      <Toaster />
+      <FloatingButton />
+    </Providers>
   );
 }

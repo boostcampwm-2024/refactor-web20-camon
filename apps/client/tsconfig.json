@@ -20,11 +20,11 @@
       "@/*": ["./src/*"],
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
-      "@contexts/*": ["src/shared/contexts/*"],
+      "@contexts/*": ["src/app/providers/theme/*"],
       "@hooks/*": ["src/shared/hooks/*"],
-      "@services/*": ["src/shared/services/*"],
+      "@services/*": ["src/shared/api/*"],
       "@pages/*": ["./src/pages/*"],
-      "@utils/*": ["src/shared/utils/*"],
+      "@utils/*": ["src/shared/lib/utils/*"],
       "@constants/*": ["src/shared/constants/*"]
     },
     "outDir": "./dist"

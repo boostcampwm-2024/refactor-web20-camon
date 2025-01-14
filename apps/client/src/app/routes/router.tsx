@@ -4,20 +4,10 @@ import { ProfilePage } from '@pages/Profile';
 import { LivePage } from '@pages/Live';
 import { BroadcastPage } from '@pages/Broadcast';
 import { AuthPage } from '@pages/Auth';
-import Record from '@pages/Record';
+import { RecordPage } from '@pages/Record';
 import { Layout } from '@/app/layouts';
 import ProtectedRoute from './ProtectedRoute';
-
-const routerOptions = {
-  future: {
-    v7_startTransition: true,
-    v7_relativeSplatPath: true,
-    v7_fetcherPersist: true,
-    v7_normalizeFormMethod: true,
-    v7_partialHydration: true,
-    v7_skipActionErrorRevalidation: true,
-  },
-};
+import { routerOptions } from './config/routerOptions';
 
 export const router = createBrowserRouter(
   [
@@ -48,7 +38,7 @@ export const router = createBrowserRouter(
 
             {
               path: 'record/:attendanceId',
-              element: <Record />,
+              element: <RecordPage />,
             },
           ],
         },

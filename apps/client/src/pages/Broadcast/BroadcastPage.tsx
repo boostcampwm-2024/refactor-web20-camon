@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import ChatContainer from '@/shared/components/ChatContainer';
-import ErrorCharacter from '@/shared/components/ErrorCharacter';
-import { useProducer } from '@/shared/hooks/useProducer';
-import { useRoom } from '@/shared/hooks/useRoom';
-import { useSocket } from '@/shared/hooks/useSocket';
-import { useTransport } from '@/shared/hooks/useTransport';
-import { Button } from '@/shared/components/ui/button';
+import ChatContainer from '@/shared/ui/ChatContainer';
+import ErrorCharacter from '@/shared/ui/ErrorCharacter';
+import { useProducer } from '@/shared/lib/mediasoup/useProducer';
+import { useRoom } from '@/shared/lib/mediasoup/useRoom';
+import { useSocket } from '@/shared/lib/socket/useSocket';
+import { useTransport } from '@/shared/lib/mediasoup/useTransport';
+import { Button } from '@/shared/ui/shadcn/button';
 import {
   MicrophoneOffIcon,
   MicrophoneOnIcon,
@@ -13,15 +13,15 @@ import {
   VideoOnIcon,
   ScreenShareIcon,
   ScreenShareIconOff,
-} from '@/shared/components/Icons';
-import BroadcastTitle from './BroadcastTitle';
-import useScreenShare from '@/shared/hooks/useScreenShare';
-import BroadcastPlayer from './BroadcastPlayer';
+} from '@/shared/ui/Icons';
+import BroadcastTitle from './ui/BroadcastTitle';
+import useScreenShare from '@/shared/lib/useScreenShare';
+import BroadcastPlayer from './ui/BroadcastPlayer';
 import { Tracks } from '@/shared/types/mediasoupTypes';
-import RecordButton from './RecordButton';
-import axiosInstance from '@/shared/services/axios';
-import { useMedia } from '@/shared/hooks/useMedia';
-import { useTheme } from '@/shared/hooks/useTheme';
+import RecordButton from './ui/RecordButton';
+import axiosInstance from '@/shared/api/axios';
+import { useMedia } from '@/shared/lib/useMedia';
+import { useTheme } from '@/shared/lib/useTheme';
 
 const mediaServerUrl = import.meta.env.VITE_MEDIASERVER_URL;
 

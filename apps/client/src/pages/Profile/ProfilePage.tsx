@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import Attendance from './Attendance';
-import UserInfo from './UserInfo';
-import EditUserInfo from './EditUserInfo';
-import axiosInstance from '@/shared/services/axios';
+import Attendance from './ui/Attendance';
+import UserInfo from './ui/UserInfo';
+import EditUserInfo from './ui/EditUserInfo';
+import axiosInstance from '@/shared/api/axios';
 import { Field } from '@/shared/types/liveTypes';
-import ErrorCharacter from '@/shared/components/ErrorCharacter';
-import LoadingCharacter from '@/shared/components/LoadingCharacter';
+import ErrorCharacter from '@/shared/ui/ErrorCharacter';
+import LoadingCharacter from '@/shared/ui/LoadingCharacter';
 
 export type Contacts = {
   email: string;

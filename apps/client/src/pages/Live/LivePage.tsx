@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ChatContainer from '@/shared/components/ChatContainer';
-import ErrorCharacter from '@/shared/components/ErrorCharacter';
-import { useConsumer } from '@/shared/hooks/useConsumer';
-import { useSocket } from '@/shared/hooks/useSocket';
-import { useTransport } from '@/shared/hooks/useTransport';
-import LivePlayer from './LivePlayer';
-import LiveCamperInfo from './LiveCamperInfo';
+import ChatContainer from '@/shared/ui/ChatContainer';
+import ErrorCharacter from '@/shared/ui/ErrorCharacter';
+import { useConsumer } from '@/shared/lib/mediasoup/useConsumer';
+import { useSocket } from '@/shared/lib/socket/useSocket';
+import { useTransport } from '@/shared/lib/mediasoup/useTransport';
+import LivePlayer from './ui/LivePlayer';
+import LiveCamperInfo from './ui/LiveCamperInfo';
 
 const socketUrl = import.meta.env.VITE_MEDIASERVER_URL;
 
