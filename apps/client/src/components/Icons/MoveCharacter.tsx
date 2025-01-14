@@ -1,7 +1,8 @@
 function MoveCharacter() {
   return (
     <svg width="200" height="250" viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g transform="translate(0, 30)">
+      {/* Initial transform to set starting position */}
+      <g transform="translate(0, 30)" style={{ transformOrigin: '100px 100px' }}>
         <animateTransform
           attributeName="transform"
           type="translate"
@@ -11,47 +12,60 @@ function MoveCharacter() {
           keyTimes="0; 0.5; 1"
           keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
           calcMode="spline"
+          begin="0s"
         />
 
-        <path opacity="0.2" fill="#6366F1">
+        {/* Shadow with initial path */}
+        <path
+          d="M100 192C135.899 192 165 186.627 165 180C165 173.373 135.899 168 100 168C64.1015 168 35 173.373 35 180C35 186.627 64.1015 192 100 192Z"
+          opacity="0.2"
+          fill="#6366F1"
+        >
           <animate
             attributeName="d"
             dur="0.8s"
             repeatCount="indefinite"
             values="M100 192C135.899 192 165 186.627 165 180C165 173.373 135.899 168 100 168C64.1015 168 35 173.373 35 180C35 186.627 64.1015 192 100 192Z;
-                      M100 192C120 192 140 189 140 185C140 181 120 178 100 178C80 178 60 181 60 185C60 189 80 192 100 192Z;
-                      M100 192C135.899 192 165 186.627 165 180C165 173.373 135.899 168 100 168C64.1015 168 35 173.373 35 180C35 186.627 64.1015 192 100 192Z"
+                    M100 192C120 192 140 189 140 185C140 181 120 178 100 178C80 178 60 181 60 185C60 189 80 192 100 192Z;
+                    M100 192C135.899 192 165 186.627 165 180C165 173.373 135.899 168 100 168C64.1015 168 35 173.373 35 180C35 186.627 64.1015 192 100 192Z"
             keyTimes="0; 0.5; 1"
+            begin="0s"
           />
         </path>
 
+        {/* Body */}
         <circle cx="100" cy="100" r="60" fill="#818CF8">
-          <animate attributeName="cy" dur="0.4s" repeatCount="indefinite" values="100;97;100" />
+          <animate attributeName="cy" dur="0.4s" repeatCount="indefinite" values="100;97;100" begin="0s" />
         </circle>
 
-        <path stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
+        {/* Arms with initial positions */}
+        <path d="M50 100C36.6667 103.333 30 96.6667 30 80" stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
           <animate
             attributeName="d"
             dur="0.8s"
             repeatCount="indefinite"
             values="M50 100C36.6667 103.333 30 96.6667 30 80;
-                      M50 100C36.6667 97.333 30 90.6667 30 74;
-                      M50 100C36.6667 103.333 30 96.6667 30 80"
+                    M50 100C36.6667 97.333 30 90.6667 30 74;
+                    M50 100C36.6667 103.333 30 96.6667 30 80"
+            begin="0s"
           />
         </path>
 
-        <path stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
+        <path d="M150 100C163.333 103.333 170 96.6667 170 80" stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
           <animate
             attributeName="d"
             dur="0.8s"
             repeatCount="indefinite"
             values="M150 100C163.333 103.333 170 96.6667 170 80;
-                      M150 100C163.333 97.333 170 90.6667 170 74;
-                      M150 100C163.333 103.333 170 96.6667 170 80"
+                    M150 100C163.333 97.333 170 90.6667 170 74;
+                    M150 100C163.333 103.333 170 96.6667 170 80"
+            begin="0s"
           />
         </path>
 
+        {/* Antennae group */}
         <g>
+          {/* Left antenna */}
           <g>
             <path d="M55 55C50.3333 38.3333 54.6667 25 68 15" stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
               <animate
@@ -59,17 +73,19 @@ function MoveCharacter() {
                 dur="0.8s"
                 repeatCount="indefinite"
                 values="M55 55C50.3333 38.3333 54.6667 25 68 15;
-                          M52 52C47.3333 35.3333 51.6667 22 65 12;
-                          M55 55C50.3333 38.3333 54.6667 25 68 15"
+                        M52 52C47.3333 35.3333 51.6667 22 65 12;
+                        M55 55C50.3333 38.3333 54.6667 25 68 15"
+                begin="0s"
               />
             </path>
             <circle cx="68" cy="15" r="10" fill="#EF4444">
-              <animate attributeName="cy" dur="0.8s" repeatCount="indefinite" values="15;12;15" />
-              <animate attributeName="cx" dur="0.8s" repeatCount="indefinite" values="68;65;68" />
-              <animate attributeName="opacity" dur="1s" values="1;0.7;1" repeatCount="indefinite" />
+              <animate attributeName="cy" dur="0.8s" repeatCount="indefinite" values="15;12;15" begin="0s" />
+              <animate attributeName="cx" dur="0.8s" repeatCount="indefinite" values="68;65;68" begin="0s" />
+              <animate attributeName="opacity" dur="1s" values="1;0.7;1" repeatCount="indefinite" begin="0s" />
             </circle>
           </g>
 
+          {/* Right antenna */}
           <g>
             <path d="M145 55C149.667 38.3333 145.333 25 132 15" stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
               <animate
@@ -77,17 +93,19 @@ function MoveCharacter() {
                 dur="0.8s"
                 repeatCount="indefinite"
                 values="M145 55C149.667 38.3333 145.333 25 132 15;
-                          M148 52C152.667 35.3333 148.333 22 135 12;
-                          M145 55C149.667 38.3333 145.333 25 132 15"
+                        M148 52C152.667 35.3333 148.333 22 135 12;
+                        M145 55C149.667 38.3333 145.333 25 132 15"
+                begin="0s"
               />
             </path>
             <circle cx="132" cy="15" r="10" fill="#EF4444">
-              <animate attributeName="cy" dur="0.8s" repeatCount="indefinite" values="15;12;15" />
-              <animate attributeName="cx" dur="0.8s" repeatCount="indefinite" values="132;135;132" />
-              <animate attributeName="opacity" dur="1s" values="0.7;1;0.7" repeatCount="indefinite" />
+              <animate attributeName="cy" dur="0.8s" repeatCount="indefinite" values="15;12;15" begin="0s" />
+              <animate attributeName="cx" dur="0.8s" repeatCount="indefinite" values="132;135;132" begin="0s" />
+              <animate attributeName="opacity" dur="1s" values="0.7;1;0.7" repeatCount="indefinite" begin="0s" />
             </circle>
           </g>
 
+          {/* Face elements */}
           <path
             d="M100 116C114.359 116 126 104.359 126 90C126 75.6406 114.359 64 100 64C85.6406 64 74 75.6406 74 90C74 104.359 85.6406 116 100 116Z"
             fill="#1E1B4B"
@@ -123,15 +141,23 @@ function MoveCharacter() {
           />
         </g>
 
-        <path stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
-          <animate attributeName="d" dur="0.8s" repeatCount="indefinite" values="M80 160V185;M80 160V175;M80 160V185" />
+        {/* Legs with initial positions */}
+        <path d="M80 160V185" stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
+          <animate
+            attributeName="d"
+            dur="0.8s"
+            repeatCount="indefinite"
+            values="M80 160V185;M80 160V175;M80 160V185"
+            begin="0s"
+          />
         </path>
-        <path stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
+        <path d="M120 160V185" stroke="#818CF8" strokeWidth="16" strokeLinecap="round">
           <animate
             attributeName="d"
             dur="0.8s"
             repeatCount="indefinite"
             values="M120 160V185;M120 160V175;M120 160V185"
+            begin="0s"
           />
         </path>
       </g>
