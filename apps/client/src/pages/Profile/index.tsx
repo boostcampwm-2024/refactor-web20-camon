@@ -7,21 +7,21 @@ import { Field } from '@/types/liveTypes';
 import ErrorCharacter from '@/components/ErrorCharacter';
 import LoadingCharacter from '@/components/LoadingCharacter';
 
-export interface UserData {
+export type Contacts = {
+  email: string;
+  github: string;
+  blog: string;
+  linkedIn: string;
+};
+
+export type UserData = {
   id: number;
   camperId: string;
   name: string;
   field: Field;
   contacts: Contacts;
   profileImage: string;
-}
-
-export interface Contacts {
-  email: string;
-  github: string;
-  blog: string;
-  linkedIn: string;
-}
+};
 
 export default function Profile() {
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -40,7 +40,7 @@ export default function Profile() {
           setError(new Error(response.data.message));
         }
       })
-      .catch(error => setError(error instanceof Error ? error : new Error(error)))
+      .catch(err => setError(err instanceof Error ? err : new Error(err)))
       .finally(() => setIsLoading(false));
   }, [isEditing]);
 
@@ -49,7 +49,7 @@ export default function Profile() {
     if (!userData.camperId || !userData.name || !userData.field) {
       if (!isEditing) setIsEditing(true);
     }
-  }, [userData]);
+  }, [userData, isEditing]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -63,24 +63,30 @@ export default function Profile() {
     setIsEditing(prev => !prev);
   };
 
+  if (showLoading && isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <LoadingCharacter size={200} />
+      </div>
+    );
+  }
+
+  if (error || !userData) {
+    return (
+      <div className="flex justify-center items-center">
+        <ErrorCharacter size={200} message={`${'프로필 조회 실패'}`} />
+      </div>
+    );
+  }
+
+  if (isEditing) {
+    return <EditUserInfo userData={userData} toggleEditing={toggleEditing} />;
+  }
+
   return (
-    <div className="flex flex-col w-full h-full gap-10">
-      {showLoading && isLoading ? (
-        <div className="flex justify-center items-center">
-          <LoadingCharacter size={200} />
-        </div>
-      ) : error || !userData ? (
-        <div className="flex justify-center items-center">
-          <ErrorCharacter size={200} message={`${'프로필 조회 실패'}`} />
-        </div>
-      ) : isEditing ? (
-        <EditUserInfo userData={userData} toggleEditing={toggleEditing} />
-      ) : (
-        <>
-          <UserInfo userData={userData} toggleEditing={toggleEditing} error={error} isLoading={isLoading} />
-          <Attendance />
-        </>
-      )}
-    </div>
+    <>
+      <UserInfo userData={userData} toggleEditing={toggleEditing} error={error} isLoading={isLoading} />
+      <Attendance />
+    </>
   );
 }

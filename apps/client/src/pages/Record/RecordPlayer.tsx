@@ -1,26 +1,28 @@
-import LoadingCharacter from '@/components/LoadingCharacter';
 import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
+import LoadingCharacter from '@/components/LoadingCharacter';
 
-interface RecordPlayerProps {
+type RecordPlayerProps = {
   video: string;
-}
+};
 
 function RecordPlayer(props: RecordPlayerProps) {
   const [isSelectedVideo, setIsSelectedVideo] = useState(false);
+  const { video } = props;
 
   useEffect(() => {
-    if (props.video) {
+    if (video) {
       setIsSelectedVideo(true);
     }
-  }, [props.video]);
+  }, [video]);
 
   return (
     <div className="h-4/5 w-full">
       {isSelectedVideo ? (
         <div className="h-full w-full">
           <ReactPlayer
-            url={props.video}
+            aria-label="recorded video"
+            url={video}
             playing
             controls
             width="100%"

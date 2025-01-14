@@ -1,12 +1,12 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Field } from '@/types/liveTypes';
-import { useState } from 'react';
 
 const fields: Field[] = ['WEB', 'AND', 'IOS'];
 
-interface FieldFilterProps {
+type FieldFilterProps = {
   onClickFilterButton: (field: Field) => void;
-}
+};
 
 function FieldFilter({ onClickFilterButton }: FieldFilterProps) {
   const [selected, setSelected] = useState<Field>('');

@@ -1,11 +1,11 @@
-import { createContext, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 
 type Theme = 'light' | 'dark' | null;
 
-interface ThemeContextInterface {
+type ThemeContextInterface = {
   theme: Theme;
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
-}
+};
 
 const currentTheme = localStorage.getItem('theme') ?? null;
 
@@ -16,5 +16,6 @@ export const ThemeContext = createContext<ThemeContextInterface>({
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => (localStorage.getItem('theme') as Theme) ?? null);
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+  const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }

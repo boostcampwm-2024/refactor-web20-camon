@@ -1,7 +1,4 @@
-interface IconProps {
-  size?: number;
-  className?: string;
-}
+import { IconProps } from '.';
 
 function LinkedInIcon({ size = 20, className = '' }: IconProps) {
   return (

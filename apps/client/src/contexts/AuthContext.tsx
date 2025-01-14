@@ -1,9 +1,9 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 
-interface AuthContextInterface {
+type AuthContextInterface = {
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 const initialState = {
   isLoggedIn: !!localStorage.getItem('accessToken'),
@@ -14,5 +14,6 @@ export const AuthContext = createContext<AuthContextInterface>(initialState);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem('accessToken'));
-  return <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>{children}</AuthContext.Provider>;
+  const value = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [isLoggedIn, setIsLoggedIn]);
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

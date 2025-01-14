@@ -1,7 +1,4 @@
-interface IconProps {
-  size?: number;
-  className?: string;
-}
+import { IconProps } from '.';
 
 function BlogIcon({ size = 24, className = '' }: IconProps) {
   return (

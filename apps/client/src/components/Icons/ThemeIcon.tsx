@@ -1,7 +1,4 @@
-interface IconProps {
-  size?: number;
-  className?: string;
-}
+import { IconProps } from '.';
 
 function ThemeIcon({ size = 36, className = '' }: IconProps) {
   return (

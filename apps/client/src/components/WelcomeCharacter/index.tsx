@@ -1,7 +1,7 @@
-interface Props {
+type Props = {
   size?: number;
   className?: string;
-}
+};
 
 function WelcomeCharacter({ size, className }: Props) {
   return (
@@ -32,7 +32,7 @@ function WelcomeCharacter({ size, className }: Props) {
         <circle cx="0" cy="0" r="60" fill="#818CF8" />
       </g>
 
-      {/*} Left Ear/Antenna */}
+      {/* } Left Ear/Antenna */}
       <g transform="translate(0 0)">
         <path d="M55 55 Q48 30 68 15" fill="none" stroke="#818CF8" strokeWidth="16" strokeLinecap="round" />
         <circle cx="68" cy="15" r="10" fill="#EF4444">
@@ -60,7 +60,7 @@ function WelcomeCharacter({ size, className }: Props) {
         </circle>
       </g>
 
-      {/*} Happy Smile */}
+      {/* } Happy Smile */}
       <path d="M80 115 Q100 128 120 115" fill="none" stroke="white" strokeWidth="5" strokeLinecap="round">
         <animate
           attributeName="d"

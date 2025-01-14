@@ -5,22 +5,23 @@ export const useRoom = (socket: Socket | null, isConnected: boolean, isMediaStre
   const [roomId, setRoomId] = useState('');
   const [roomError, setRoomError] = useState<Error | null>(null);
 
-  const getRooomId = async () => {
-    if (!socket) {
-      setRoomError(new Error('getRoomId Error: socket이 존재하지 않습니다.'));
-      return;
-    }
-
-    setRoomError(null);
-    socket.emit('createRoom', (response: { roomId: string }) => {
-      setRoomId(response.roomId);
-    });
-  };
-
   useEffect(() => {
     if (!isMediaStreamReady) return;
+
+    const getRooomId = async () => {
+      if (!socket) {
+        setRoomError(new Error('getRoomId Error: socket이 존재하지 않습니다.'));
+        return;
+      }
+
+      setRoomError(null);
+      socket.emit('createRoom', (response: { roomId: string }) => {
+        setRoomId(response.roomId);
+      });
+    };
+
     getRooomId();
-  }, [isConnected, isMediaStreamReady]);
+  }, [isConnected, isMediaStreamReady, socket]);
 
   return {
     roomId,

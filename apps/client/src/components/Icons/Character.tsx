@@ -1,7 +1,4 @@
-interface IconProps {
-  size?: number;
-  className?: string;
-}
+import { IconProps } from '.';
 
 function Character({ size = 24, className = '' }: IconProps) {
   return (

@@ -26,7 +26,7 @@ function Auth() {
         navigate('/', { replace: true });
       }, 3000);
     }
-  }, []);
+  }, [navigate, searchParams, setLogIn]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">

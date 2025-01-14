@@ -1,9 +1,9 @@
-interface ErrorCharacterProps {
+type ErrorCharacterProps = {
   size?: number;
   message?: string;
-}
+};
 
-const ErrorCharacter = ({ size = 300, message = 'Error' }: ErrorCharacterProps): JSX.Element => {
+function ErrorCharacter({ size = 300, message = 'Error' }: ErrorCharacterProps): JSX.Element {
   return (
     <div style={{ width: size, height: size }} className="flex flex-col items-center">
       <svg viewBox="0 0 200 200" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -82,6 +82,6 @@ const ErrorCharacter = ({ size = 300, message = 'Error' }: ErrorCharacterProps):
       <p className="text-[#EF4444] font-bold mt-4">{message}</p>
     </div>
   );
-};
+}
 
 export default ErrorCharacter;

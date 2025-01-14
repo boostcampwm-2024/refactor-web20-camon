@@ -1,25 +1,26 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@components/ui/card';
 import { Input } from '@components/ui/input';
-import { SmileIcon } from '@/components/Icons';
 import { useSocket } from '@hooks/useSocket';
 import ErrorCharacter from '@components/ErrorCharacter';
-import { AuthContext } from '@/contexts/AuthContext';
 import { createPortal } from 'react-dom';
+import { AuthContext } from '@/contexts/AuthContext';
+import { SmileIcon } from '@/components/Icons';
 import ChatEndModal from './ChatEndModal';
 
-interface Chat {
+type Chat = {
+  chatId?: string;
   camperId: string;
   name: string;
   message: string;
-}
+};
 
 const chatServerUrl = import.meta.env.VITE_CHAT_SERVER_URL;
 
-const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boolean }) => {
+function ChatContainer({ roomId, isProducer }: { roomId: string; isProducer: boolean }) {
   const { isLoggedIn } = useContext(AuthContext);
   // 채팅 방 입장
-  const [isJoinedRoom, setIsJoinedRoom] = useState(false);
+  const isJoinedRoomRef = useRef(false);
   // 채팅 전송
   const { socket, isConnected, socketError } = useSocket(chatServerUrl);
   const [chattings, setChattings] = useState<Chat[]>([]);
@@ -35,22 +36,15 @@ const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boo
   // 채팅 종료
   const [showModal, setShowModal] = useState(false);
 
-  const setUpRoom = async (isProducer: boolean) => {
-    if (isProducer) {
-      socket?.emit('createRoom', { roomId: roomId });
-    } else {
-      // 채팅방 입장
-      socket?.emit('joinRoom', { roomId: roomId }, () => {});
-      // 채팅방 종료 이벤트
-      socket?.on('chatClosed', () => {
-        setShowModal(true);
-      });
-    }
-    setIsJoinedRoom(true);
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
+  };
+
+  const handleSendChat = () => {
+    if (inputValue.trim() && socket) {
+      socket.emit('chat', { roomId, message: inputValue });
+    }
+    setInputValue('');
   };
 
   const hanldeKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -60,32 +54,47 @@ const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boo
     }
   };
 
-  const handleSendChat = () => {
-    if (inputValue.trim() && socket) {
-      socket.emit('chat', { roomId: roomId, message: inputValue });
-    }
-    setInputValue('');
-  };
-
-  const handleReceiveChat = (response: Chat) => {
-    const { camperId, name, message } = response;
-    setChattings(prev => [...prev, { camperId, name, message }]);
-  };
-
   const handleClickEmoticon = () => {
     alert('구현 예정');
   };
-
+  // 채팅방 입장
   useEffect(() => {
-    if (!isConnected || !socket || !roomId || isJoinedRoom) return;
-    setUpRoom(isProducer);
+    if (!isConnected || !socket || !roomId || isJoinedRoomRef.current) return;
+
+    const setUpRoom = async () => {
+      if (isProducer) {
+        socket?.emit('createRoom', { roomId });
+      } else {
+        // 채팅방 입장
+        socket?.emit('joinRoom', { roomId }, () => {});
+        // 채팅방 종료 이벤트
+      }
+      isJoinedRoomRef.current = true;
+    };
+    setUpRoom();
+  }, [isConnected, socket, roomId, isProducer]);
+
+  // 채팅 이벤트 등록/해제
+  useEffect(() => {
+    if (!socket || !isConnected) return () => {};
+
+    const handleReceiveChat = (response: Chat) => {
+      const { camperId, name, message } = response;
+      setChattings(prev => [...prev, { chatId: `${Date.now()}-${camperId}`, camperId, name, message }]);
+    };
+
+    const handleChatClosed = () => {
+      setShowModal(true);
+    };
 
     socket?.on('chat', handleReceiveChat);
+    socket?.on('chatClosed', handleChatClosed);
 
     return () => {
       socket?.off('chat', handleReceiveChat);
+      socket?.off('chatClosed');
     };
-  }, [isConnected, roomId, socket]);
+  }, [socket, isConnected]);
 
   // 자동 스크롤
   useEffect(() => {
@@ -106,8 +115,8 @@ const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boo
           <>
             <CardContent ref={scrollAreaRef} className="flex flex-1 px-6 pb-2 overflow-y-auto flex-col-reverse">
               <div className="w-full flex flex-col space-y-1">
-                {chattings.map((chat, index) => (
-                  <div key={index}>
+                {chattings.map((chat: Chat) => (
+                  <div key={chat.chatId}>
                     <span className="font-medium text-display-medium16 text-text-weak">{chat.camperId} </span>
                     <span className="font-medium text-display-medium14 text-text-strong">{chat.message}</span>
                   </div>
@@ -128,6 +137,7 @@ const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boo
                   disabled={!isLoggedIn}
                 />
                 <button
+                  type="button"
                   onClick={handleClickEmoticon}
                   className="ml-2 p-2 rounded-full text-text-default"
                   disabled={!isLoggedIn}
@@ -142,6 +152,6 @@ const ChatContainer = ({ roomId, isProducer }: { roomId: string; isProducer: boo
       {showModal && createPortal(<ChatEndModal setShowModal={setShowModal} />, document.body)}
     </>
   );
-};
+}
 
 export default ChatContainer;

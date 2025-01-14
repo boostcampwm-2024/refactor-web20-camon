@@ -2,10 +2,10 @@ import { useCallback, useEffect, useRef } from 'react';
 
 type IntersectHandler = (entry: IntersectionObserverEntry, observer: IntersectionObserver) => void;
 
-interface UseIntersectProps {
+type UseIntersectProps = {
   onIntersect: IntersectHandler;
   options?: IntersectionObserverInit;
-}
+};
 
 export const useIntersect = ({ onIntersect, options }: UseIntersectProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ export const useIntersect = ({ onIntersect, options }: UseIntersectProps) => {
   );
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current) return undefined;
     const observer = new IntersectionObserver(callback, options);
     observer.observe(ref.current);
     return () => {

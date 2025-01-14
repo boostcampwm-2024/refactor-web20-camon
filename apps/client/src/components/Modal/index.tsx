@@ -1,11 +1,11 @@
 import { CloseIcon } from '@components/Icons';
 import { useEffect, useRef } from 'react';
 
-interface ModalProps {
+type ModalProps = {
   children: React.ReactNode;
   setShowModal: (showModal: boolean) => void;
   modalClassName?: string;
-}
+};
 
 function Modal({ children, setShowModal, modalClassName }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -30,6 +30,7 @@ function Modal({ children, setShowModal, modalClassName }: ModalProps) {
       >
         <div className="h-6 w-full flex justify-end p-2">
           <button
+            type="button"
             className="float-right h-full cursor-pointer text-text-default hover:text-text-strong"
             onClick={() => setShowModal(false)}
           >

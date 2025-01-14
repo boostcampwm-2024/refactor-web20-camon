@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import WelcomeCharacter from '@components/WelcomeCharacter';
-import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@components/ui/button';
 import { createPortal } from 'react-dom';
 import Modal from '@components/Modal';
 import { GithubIcon, GoogleIcon } from '@components/Icons';
+import { useAuth } from '@/hooks/useAuth';
 import axiosInstance from '@/services/axios';
 
 function LogInButton() {
@@ -38,6 +38,7 @@ function LogInButton() {
               </div>
               <div className="flex flex-row md:flex-col h-full justify-around items-center gap-3 p-4">
                 <button
+                  type="button"
                   onClick={() => {
                     requestLogIn('github');
                   }}
@@ -49,6 +50,7 @@ function LogInButton() {
                   </span>
                 </button>
                 <button
+                  type="button"
                   onClick={() => {
                     requestLogIn('google');
                   }}
@@ -59,7 +61,7 @@ function LogInButton() {
                     Google로 로그인하기
                   </span>
                 </button>
-                <button className="border-none underline" onClick={handleGuestLogIn}>
+                <button type="button" className="border-none underline" onClick={handleGuestLogIn}>
                   게스트로 로그인하기
                 </button>
               </div>

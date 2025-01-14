@@ -2,9 +2,9 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Character, Logo } from '@components/Icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
+import { cn } from '@utils/utils';
 import { AuthContext } from '@/contexts/AuthContext';
 import axiosInstance from '@/services/axios';
-import { cn } from '@utils/utils';
 import LogInButton from './LogInButton';
 import { Button } from '../ui/button';
 import { useAuth } from '@/hooks/useAuth';
@@ -72,10 +72,10 @@ function Header() {
 
   return (
     <header className="fixed top-0 left-0 h-fit w-full px-10 py-3 flex justify-between z-10 bg-surface-default">
-      <div className="flex flex-row gap-2 hover:cursor-pointer" onClick={handleLogoClick}>
+      <button type="button" className="flex flex-row gap-2 hover:cursor-pointer" onClick={handleLogoClick}>
         <Character size={48} />
         <Logo width={109} height={50} className="text-text-strong" />
-      </div>
+      </button>
       <div className="flex items-center">
         {isLoggedIn ? (
           <div className="flex gap-2 items-center">

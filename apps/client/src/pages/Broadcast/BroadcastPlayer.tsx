@@ -1,8 +1,8 @@
+import { useEffect, useRef } from 'react';
 import { RESOLUTION_OPTIONS } from '@/constants/videoOptions';
 import { Tracks } from '@/types/mediasoupTypes';
-import { useEffect, useRef } from 'react';
 
-interface BroadcastPlayerProps {
+type BroadcastPlayerProps = {
   mediaStream: MediaStream | null;
   screenStream: MediaStream | null;
   isVideoEnabled: boolean;
@@ -10,7 +10,7 @@ interface BroadcastPlayerProps {
   isStreamReady: boolean;
   setIsStreamReady: (ready: boolean) => void;
   tracksRef: React.MutableRefObject<Tracks>;
-}
+};
 
 function BroadcastPlayer({
   mediaStream,
@@ -41,23 +41,23 @@ function BroadcastPlayer({
   }, [isScreenSharing, screenStream]);
 
   useEffect(() => {
-    tracksRef.current['mediaAudio'] = mediaStream?.getAudioTracks()[0];
-  }, [mediaStream]);
+    tracksRef.current.mediaAudio = mediaStream?.getAudioTracks()[0];
+  }, [mediaStream, tracksRef]);
 
   useEffect(() => {
-    tracksRef.current['screenAudio'] = screenStream?.getAudioTracks()[0];
-  }, [screenStream]);
+    tracksRef.current.screenAudio = screenStream?.getAudioTracks()[0];
+  }, [screenStream, tracksRef]);
 
   // 미디어스트림 캔버스에 넣기
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return undefined;
 
-    canvas.width = RESOLUTION_OPTIONS['high'].width;
-    canvas.height = RESOLUTION_OPTIONS['high'].height;
+    canvas.width = RESOLUTION_OPTIONS.high.width;
+    canvas.height = RESOLUTION_OPTIONS.high.height;
 
     const context = canvas.getContext('2d');
-    if (!context) return;
+    if (!context) return undefined;
 
     context.imageSmoothingEnabled = true;
     context.imageSmoothingQuality = 'high';
@@ -70,21 +70,21 @@ function BroadcastPlayer({
 
         const screenRatio = screenVideo.videoWidth / screenVideo.videoHeight;
         const canvasRatio = canvas.width / canvas.height;
-        const draw = { width: canvas.width, height: canvas.height, x: 0, y: 0 };
+        const drawInfo = { width: canvas.width, height: canvas.height, x: 0, y: 0 };
 
         if (screenRatio > canvasRatio) {
           // 화면이 더 넓은 경우
-          draw.height = canvas.width / screenRatio;
-          draw.y = (canvas.height - draw.height) / 2;
+          drawInfo.height = canvas.width / screenRatio;
+          drawInfo.y = (canvas.height - drawInfo.height) / 2;
         } else {
           // 화면이 더 좁은 경우
-          draw.width = canvas.height * screenRatio;
-          draw.x = (canvas.width - draw.width) / 2;
+          drawInfo.width = canvas.height * screenRatio;
+          drawInfo.x = (canvas.width - drawInfo.width) / 2;
         }
 
         context.fillStyle = '#000000';
         context.fillRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(screenVideo, draw.x, draw.y, draw.width, draw.height);
+        context.drawImage(screenVideo, drawInfo.x, drawInfo.y, drawInfo.width, drawInfo.height);
 
         if (isVideoEnabled && videoRef.current) {
           const pipWidth = canvas.width / 4;
@@ -99,7 +99,8 @@ function BroadcastPlayer({
 
     const startDrawing = async () => {
       draw();
-      tracksRef.current['video'] = canvas.captureStream(30).getVideoTracks()[0];
+      const [captureVideo] = canvas.captureStream(30).getVideoTracks();
+      tracksRef.current.video = captureVideo;
       videoRef.current?.play();
       screenShareRef.current?.play();
       if (!isStreamReady) setIsStreamReady(true);
@@ -114,7 +115,7 @@ function BroadcastPlayer({
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isVideoEnabled, isScreenSharing, mediaStream, screenStream, isStreamReady]);
+  }, [isVideoEnabled, isScreenSharing, mediaStream, screenStream, isStreamReady, setIsStreamReady, tracksRef]);
 
   return (
     <div className="relative w-full max-h-[310px] aspect-video">
@@ -134,8 +135,8 @@ function BroadcastPlayer({
       />
       <canvas
         ref={canvasRef}
-        width={RESOLUTION_OPTIONS['high'].width}
-        height={RESOLUTION_OPTIONS['high'].height}
+        width={RESOLUTION_OPTIONS.high.width}
+        height={RESOLUTION_OPTIONS.high.height}
         className={`absolute top-0 left-0 w-full h-full bg-black object-cover ${
           !isScreenSharing || !isVideoEnabled ? 'hidden' : ''
         }`}

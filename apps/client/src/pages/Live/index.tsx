@@ -1,12 +1,12 @@
 import ChatContainer from '@components/ChatContainer';
 import ErrorCharacter from '@components/ErrorCharacter';
-import LiveCamperInfo from './LiveCamperInfo';
 import { useConsumer } from '@hooks/useConsumer';
 import { useSocket } from '@hooks/useSocket';
 import { useTransport } from '@hooks/useTransport';
-import LivePlayer from './LivePlayer';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import LivePlayer from './LivePlayer';
+import LiveCamperInfo from './LiveCamperInfo';
 
 const socketUrl = import.meta.env.VITE_MEDIASERVER_URL;
 
@@ -30,29 +30,31 @@ export default function Live() {
     isConnected,
   });
 
-  const handleLeaveLive = () => {
-    if (socket && liveId && transportInfo) {
-      socket.emit('leaveBroadcast', { transportId: transportInfo.transportId, roomId: liveId });
-    }
-
-    socket?.disconnect();
-    transport?.close();
-  };
-
-  const preventClose = (e: BeforeUnloadEvent) => {
-    e.preventDefault();
-    handleLeaveLive();
-    e.returnValue = '';
-  };
-
   useEffect(() => {
+    if (!socket || !liveId || !transportInfo || !transport) return undefined;
+
+    const handleLeaveLive = () => {
+      if (socket && liveId && transportInfo) {
+        socket.emit('leaveBroadcast', { transportId: transportInfo.transportId, roomId: liveId });
+      }
+
+      socket?.disconnect();
+      transport?.close();
+    };
+
+    const preventClose = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      handleLeaveLive();
+      e.returnValue = '';
+    };
+
     window.addEventListener('beforeunload', preventClose);
 
     return () => {
       handleLeaveLive();
       window.removeEventListener('beforeunload', preventClose);
     };
-  }, []);
+  }, [socket, liveId, transportInfo, transport]);
 
   return (
     <div className="flex flex-row w-full h-full gap-10 pb-5">
