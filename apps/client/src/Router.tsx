@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Home from '@pages/Home';
-import Profile from '@pages/Profile';
-import Live from '@pages/Live';
-import Broadcast from '@pages/Broadcast';
-import Auth from '@pages/Auth';
+import { HomePage } from '@pages/Home';
+import { ProfilePage } from '@pages/Profile';
+import { LivePage } from '@pages/Live';
+import { BroadcastPage } from '@pages/Broadcast';
+import { AuthPage } from '@pages/Auth';
 import Record from '@pages/Record';
 import App from './App';
 import ProtectedRoute from './ProtectedRoute';
@@ -27,15 +27,15 @@ const router = createBrowserRouter(
       children: [
         {
           path: '',
-          element: <Home />,
+          element: <HomePage />,
         },
         {
           path: 'live/:liveId',
-          element: <Live />,
+          element: <LivePage />,
         },
         {
           path: 'auth',
-          element: <Auth />,
+          element: <AuthPage />,
         },
         {
           path: '',
@@ -43,7 +43,7 @@ const router = createBrowserRouter(
           children: [
             {
               path: 'profile',
-              element: <Profile />,
+              element: <ProfilePage />,
             },
 
             {
@@ -60,7 +60,7 @@ const router = createBrowserRouter(
       children: [
         {
           path: '',
-          element: <Broadcast />,
+          element: <BroadcastPage />,
         },
       ],
     },
