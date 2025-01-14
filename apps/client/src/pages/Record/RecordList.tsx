@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { PlayIcon } from '@/components/Icons';
+import { PlayIcon } from '@/shared/components/Icons';
 import { RecordData } from '.';
-import axiosInstance from '@/services/axios';
-import ErrorCharacter from '@/components/ErrorCharacter';
+import axiosInstance from '@/shared/services/axios';
+import ErrorCharacter from '@/shared/components/ErrorCharacter';
 
 type RecordListProps = {
   onClickList: (data: RecordData) => void;

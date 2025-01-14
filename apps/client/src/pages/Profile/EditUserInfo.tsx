@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { UserData } from '.';
-import { Field } from '@/types/liveTypes';
-import { Button } from '@/components/ui/button';
-import axiosInstance from '@/services/axios';
-import { useToast } from '@/hooks/useToast';
+import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
+import { UserData } from './ProfilePage';
+import { Field } from '@/shared/types/liveTypes';
+import { Button } from '@/shared/components/ui/button';
+import axiosInstance from '@/shared/services/axios';
+import { useToast } from '@/shared/hooks/useToast';
 
 type EditUserInfoProps = {
   userData: UserData | undefined;

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { Socket } from 'socket.io-client';
-import { Button } from '@/components/ui/button';
-import Modal from '@/components/Modal';
+import { Button } from '@/shared/components/ui/button';
+import Modal from '@/shared/components/Modal';
 
 type FormInput = {
   title: string;

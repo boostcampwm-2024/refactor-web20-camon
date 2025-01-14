@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import LoadingCharacter from '@/components/LoadingCharacter';
+import LoadingCharacter from '@/shared/components/LoadingCharacter';
 
 type RecordPlayerProps = {
   video: string;

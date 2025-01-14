@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@components/ui/select';
 import { Socket } from 'socket.io-client';
-import { PlayIcon, PauseIcon, VolumeOffIcon, VolumeOnIcon, ExpandIcon } from '@/components/Icons';
-import ErrorCharacter from '@/components/ErrorCharacter';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui/select';
+import { PlayIcon, PauseIcon, VolumeOffIcon, VolumeOnIcon, ExpandIcon } from '@/shared/components/Icons';
+import ErrorCharacter from '@/shared/components/ErrorCharacter';
 
 type Errors = {
   socketError: Error | null;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ErrorCharacter from '@/components/ErrorCharacter';
-import { PlayIcon } from '@/components/Icons';
-import LoadingCharacter from '@/components/LoadingCharacter';
-import axiosInstance from '@/services/axios';
+import ErrorCharacter from '@/shared/components/ErrorCharacter';
+import { PlayIcon } from '@/shared/components/Icons';
+import LoadingCharacter from '@/shared/components/LoadingCharacter';
+import axiosInstance from '@/shared/services/axios';
 
 type AttendanceData = {
   attendanceId: number;

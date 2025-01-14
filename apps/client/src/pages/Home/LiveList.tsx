@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
-import axiosInstance from '@services/axios';
+import axiosInstance from '@/shared/services/axios';
 import FieldFilter from './FieldFilter';
 import LiveCard from './LiveCard';
-import { LivePreviewInfo } from '@/types/homeTypes';
+import { LivePreviewInfo } from '@/shared/types/homeTypes';
 import Search from './Search';
-import { Field } from '@/types/liveTypes';
-import { useIntersect } from '@/hooks/useIntersect';
+import { Field } from '@/shared/types/liveTypes';
+import { useIntersect } from '@/shared/hooks/useIntersect';
 
 const LIMIT = 12;
 

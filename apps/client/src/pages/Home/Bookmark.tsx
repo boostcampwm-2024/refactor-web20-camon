@@ -1,12 +1,12 @@
-import Modal from '@components/Modal';
-import { Button } from '@components/ui/button';
 import { createPortal } from 'react-dom';
 import { useForm } from 'react-hook-form';
-import { useToast } from '@hooks/useToast';
-import { AuthContext } from '@contexts/AuthContext';
-import axiosInstance from '@services/axios';
 import { useContext, useEffect, useState } from 'react';
-import { CloseIcon } from '@components/Icons';
+import Modal from '@/shared/components/Modal';
+import { Button } from '@/shared/components/ui/button';
+import { useToast } from '@/shared/hooks/useToast';
+import { AuthContext } from '@/shared/contexts/AuthContext';
+import axiosInstance from '@/shared/services/axios';
+import { CloseIcon } from '@/shared/components/Icons';
 
 type BookmarkData = {
   bookmarkId: number;

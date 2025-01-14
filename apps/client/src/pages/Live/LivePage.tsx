@@ -1,10 +1,10 @@
-import ChatContainer from '@components/ChatContainer';
-import ErrorCharacter from '@components/ErrorCharacter';
-import { useConsumer } from '@hooks/useConsumer';
-import { useSocket } from '@hooks/useSocket';
-import { useTransport } from '@hooks/useTransport';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ChatContainer from '@/shared/components/ChatContainer';
+import ErrorCharacter from '@/shared/components/ErrorCharacter';
+import { useConsumer } from '@/shared/hooks/useConsumer';
+import { useSocket } from '@/shared/hooks/useSocket';
+import { useTransport } from '@/shared/hooks/useTransport';
 import LivePlayer from './LivePlayer';
 import LiveCamperInfo from './LiveCamperInfo';
 

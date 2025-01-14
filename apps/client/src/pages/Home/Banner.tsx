@@ -1,4 +1,4 @@
-import MoveCharacter from '@/components/Icons/MoveCharacter';
+import MoveCharacter from '@/shared/components/Icons/MoveCharacter';
 import Bookmark from './Bookmark';
 
 function Banner() {

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import ErrorCharacter from '@/components/ErrorCharacter';
-import { BlogIcon, EditIcon, GithubIcon, LinkedInIcon, MailIcon } from '@/components/Icons';
-import LoadingCharacter from '@/components/LoadingCharacter';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { UserData } from '.';
+import ErrorCharacter from '@/shared/components/ErrorCharacter';
+import { BlogIcon, EditIcon, GithubIcon, LinkedInIcon, MailIcon } from '@/shared/components/Icons';
+import LoadingCharacter from '@/shared/components/LoadingCharacter';
+import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
+import { UserData } from './ProfilePage';
 
 type UserInfoProps = {
   userData: UserData | undefined;

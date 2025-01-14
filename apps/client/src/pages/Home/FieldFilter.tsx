@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Field } from '@/types/liveTypes';
+import { Button } from '@/shared/components/ui/button';
+import { Field } from '@/shared/types/liveTypes';
 
 const fields: Field[] = ['WEB', 'AND', 'IOS'];
 
