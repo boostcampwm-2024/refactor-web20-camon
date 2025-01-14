@@ -79,20 +79,25 @@ function Bookmark() {
         <div className="flex flex-col h-full gap-3 p-3">
           {bookmarkList &&
             bookmarkList.map(data => (
-              <Button
+              <div
+                className="flex h-14 w-52 bg-surface-alt rounded-xl items-center hover:bg-surface-alt-light"
                 key={data.bookmarkId}
-                onClick={() => handleClickBookmarkButton(data.url)}
-                className="h-14 w-52 bg-surface-alt text-text-strong hover:bg-surface-alt-light relative flex items-center justify-between"
               >
-                <span className="truncate flex-1">{data.name}</span>
+                <button
+                  type="button"
+                  onClick={() => handleClickBookmarkButton(data.url)}
+                  className="flex-1 truncate text-text-strong text-xl relative flex items-center justify-between px-4 py-2"
+                >
+                  <span className="truncate flex-1">{data.name}</span>
+                </button>
                 <button
                   type="button"
                   onClick={e => handleDeleteBookmark(e, data.bookmarkId)}
-                  className="flex items-center p-1 hover:text-text-strong hover:cursor-pointer"
+                  className="flex w-9 h-9 items-center p-1 hover:text-text-strong hover:cursor-pointer"
                 >
                   <CloseIcon size={36} />
                 </button>
-              </Button>
+              </div>
             ))}
 
           {bookmarkList.length < 5 && (
