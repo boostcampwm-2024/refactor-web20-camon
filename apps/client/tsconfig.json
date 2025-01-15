@@ -18,12 +18,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
       "@contexts/*": ["src/app/providers/theme/*"],
       "@hooks/*": ["src/shared/hooks/*"],
       "@services/*": ["src/shared/api/*"],
-      "@pages/*": ["./src/pages/*"],
+      "@pages/*": ["src/pages/*"],
       "@utils/*": ["src/shared/lib/utils/*"],
       "@constants/*": ["src/shared/constants/*"]
     },

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ChatContainer from '@/shared/ui/ChatContainer';
 import ErrorCharacter from '@/shared/ui/ErrorCharacter';
-import { useProducer } from '@/shared/lib/mediasoup/useProducer';
-import { useRoom } from '@/shared/lib/mediasoup/useRoom';
+import { useProducer } from '@/pages/Broadcast/hooks/useProducer';
+import { useRoom } from '@/pages/Broadcast/hooks/useRoom';
 import { useSocket } from '@/shared/lib/socket/useSocket';
 import { useTransport } from '@/shared/lib/mediasoup/useTransport';
 import { Button } from '@/shared/ui/shadcn/button';
@@ -15,12 +15,12 @@ import {
   ScreenShareIconOff,
 } from '@/shared/ui/Icons';
 import BroadcastTitle from './ui/BroadcastTitle';
-import useScreenShare from '@/shared/lib/useScreenShare';
+import useScreenShare from '@/pages/Broadcast/hooks/useScreenShare';
 import BroadcastPlayer from './ui/BroadcastPlayer';
-import { Tracks } from '@/shared/types/mediasoupTypes';
+import { Tracks } from './types/trackTypes';
 import RecordButton from './ui/RecordButton';
 import axiosInstance from '@/shared/api/axios';
-import { useMedia } from '@/shared/lib/useMedia';
+import { useMedia } from '@/pages/Broadcast/hooks/useMedia';
 import { useTheme } from '@/shared/lib/useTheme';
 
 const mediaServerUrl = import.meta.env.VITE_MEDIASERVER_URL;

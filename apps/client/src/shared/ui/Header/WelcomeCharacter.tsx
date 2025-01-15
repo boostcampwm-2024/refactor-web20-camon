@@ -3,7 +3,7 @@ type Props = {
   className?: string;
 };
 
-function WelcomeCharacter({ size, className }: Props) {
+export function WelcomeCharacter({ size, className }: Props) {
   return (
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width={size} height={size} className={className}>
       {/* Shadow */}
@@ -110,4 +110,3 @@ function WelcomeCharacter({ size, className }: Props) {
     </svg>
   );
 }
-export default WelcomeCharacter;

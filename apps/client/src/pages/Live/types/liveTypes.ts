@@ -1,11 +1,11 @@
+import { Field } from '@/shared/types/sharedTypes';
+
 export type ContactInfo = {
   github: string;
   linkedin: string;
   email: string;
   blog: string;
 };
-
-export type Field = 'WEB' | 'AND' | 'IOS' | '';
 
 export type LiveInfo = {
   title: string;

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ChatContainer from '@/shared/ui/ChatContainer';
 import ErrorCharacter from '@/shared/ui/ErrorCharacter';
-import { useConsumer } from '@/shared/lib/mediasoup/useConsumer';
+import { useConsumer } from '@/pages/Live/hooks/useConsumer';
 import { useSocket } from '@/shared/lib/socket/useSocket';
 import { useTransport } from '@/shared/lib/mediasoup/useTransport';
 import LivePlayer from './ui/LivePlayer';

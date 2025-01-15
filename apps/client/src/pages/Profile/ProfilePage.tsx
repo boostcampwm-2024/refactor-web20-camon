@@ -3,7 +3,7 @@ import Attendance from './ui/Attendance';
 import UserInfo from './ui/UserInfo';
 import EditUserInfo from './ui/EditUserInfo';
 import axiosInstance from '@/shared/api/axios';
-import { Field } from '@/shared/types/liveTypes';
+import { Field } from '@/shared/types/sharedTypes';
 import ErrorCharacter from '@/shared/ui/ErrorCharacter';
 import LoadingCharacter from '@/shared/ui/LoadingCharacter';
 

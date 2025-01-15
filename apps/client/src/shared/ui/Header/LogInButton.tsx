@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import WelcomeCharacter from '@/shared/ui/WelcomeCharacter';
+import { WelcomeCharacter } from './WelcomeCharacter';
 import { Button } from '@/shared/ui/shadcn/button';
 import Modal from '@/shared/ui/Modal';
 import { GithubIcon, GoogleIcon } from '@/shared/ui/Icons';

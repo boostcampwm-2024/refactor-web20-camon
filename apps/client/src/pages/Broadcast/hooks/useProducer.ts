@@ -3,7 +3,7 @@ import { Transport, Device, Producer } from 'mediasoup-client/lib/types';
 import { Socket } from 'socket.io-client';
 import { ConnectTransportResponse, TransportInfo } from '@/shared/types/mediasoupTypes';
 import { checkDependencies } from '@/shared/lib/utils/utils';
-import { ENCODING_OPTIONS } from '@/shared/config/videoOptions';
+import { ENCODING_OPTIONS } from '../config';
 
 type UseProducerProps = {
   socket: Socket | null;

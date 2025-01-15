@@ -12,9 +12,3 @@ export type ConnectTransportResponse = {
   connected: boolean;
   isProducer: boolean;
 };
-
-export type Tracks = {
-  video: MediaStreamTrack | undefined;
-  mediaAudio: MediaStreamTrack | undefined;
-  screenAudio: MediaStreamTrack | undefined;
-};

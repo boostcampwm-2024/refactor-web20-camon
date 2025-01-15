@@ -4,7 +4,7 @@ import IconButton from '@/shared/ui/IconButton';
 import { useAPI } from '@/shared/lib/useAPI';
 import LoadingCharacter from '@/shared/ui/LoadingCharacter';
 import ErrorCharacter from '@/shared/ui/ErrorCharacter';
-import { LiveInfo } from '@/shared/types/liveTypes';
+import { LiveInfo } from '@/pages/Live/types/liveTypes';
 import { MailIcon, GithubIcon, BlogIcon, LinkedInIcon } from '@/shared/ui/Icons';
 
 function LiveCamperInfo({ liveId }: { liveId: string }) {

@@ -1,4 +1,4 @@
-import { Field } from './liveTypes';
+import { Field } from '@/shared/types/sharedTypes';
 
 export type LivePreviewInfo = {
   broadcastId: string;

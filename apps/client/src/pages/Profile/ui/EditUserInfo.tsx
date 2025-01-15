@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/shadcn/avatar';
 import { UserData } from '../ProfilePage';
-import { Field } from '@/shared/types/liveTypes';
+import { Field } from '@/shared/types/sharedTypes';
 import { Button } from '@/shared/ui/shadcn/button';
 import axiosInstance from '@/shared/api/axios';
 import { useToast } from '@/shared/lib/toast/useToast';
