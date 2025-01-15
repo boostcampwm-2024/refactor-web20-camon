@@ -1,7 +1,7 @@
-import ErrorCharacter from '@components/ErrorCharacter';
-import { useAuth } from '@hooks/useAuth';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import ErrorCharacter from '@/shared/ui/ErrorCharacter';
+import { useAuth } from '@/shared/lib/useAuth';
 
 export function AuthPage() {
   const [searchParams] = useSearchParams();
@@ -10,22 +10,18 @@ export function AuthPage() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    try {
-      const accessToken = searchParams.get('accessToken');
-      const isNecessaryInfo = searchParams.get('isNecessaryInfo');
-      if (!accessToken) {
-        throw new Error('액세스 토큰을 받지 못했습니다.');
-      }
-
-      setLogIn(accessToken);
-      if (isNecessaryInfo === 'true') navigate('/', { replace: true });
-      else navigate('/profile', { replace: true });
-    } catch (err) {
-      setError(err instanceof Error ? err : new Error('로그인 처리 중 오류'));
+    const accessToken = searchParams.get('accessToken');
+    const isNecessaryInfo = searchParams.get('isNecessaryInfo');
+    if (!accessToken) {
+      setError(new Error('액세스 토큰을 받지 못했습니다.'));
       setTimeout(() => {
         navigate('/', { replace: true });
       }, 3000);
+      return;
     }
+
+    setLogIn(accessToken);
+    navigate(isNecessaryInfo === 'true' ? '/' : '/profile', { replace: true });
   }, [navigate, searchParams, setLogIn]);
 
   return (
