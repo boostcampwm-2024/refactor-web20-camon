@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { Socket } from 'socket.io-client';
 import { Button } from '@/shared/ui/shadcn/button';
-import Modal from '@/shared/ui/Modal';
+import { Modal } from '@/shared/ui';
 
 type FormInput = {
   title: string;
@@ -14,7 +14,7 @@ type RecordButtonProps = {
   roomId: string;
 };
 
-function RecordButton({ socket, roomId }: RecordButtonProps) {
+export function RecordButton({ socket, roomId }: RecordButtonProps) {
   const [isRecording, setIsRecording] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -98,5 +98,3 @@ function RecordButton({ socket, roomId }: RecordButtonProps) {
     </>
   );
 }
-
-export default RecordButton;

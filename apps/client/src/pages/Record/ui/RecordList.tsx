@@ -1,20 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { PlayIcon } from '@/shared/ui/Icons';
+import { PlayIcon, ErrorCharacter } from '@/shared/ui';
 import { RecordData } from '../RecordPage';
 import axiosInstance from '@/shared/api/axios';
-import ErrorCharacter from '@/shared/ui/ErrorCharacter';
 
 type RecordListProps = {
   onClickList: (data: RecordData) => void;
 };
 
-function RecordList(props: RecordListProps) {
+export function RecordList({ onClickList }: RecordListProps) {
   const [recordList, setRecordList] = useState<RecordData[]>([]);
   const { attendanceId } = useParams<{ attendanceId: string }>();
   const [error, setError] = useState<string>('');
-
-  const { onClickList } = props;
 
   useEffect(() => {
     axiosInstance.get(`/v1/records/${attendanceId}`).then(response => {
@@ -56,5 +53,3 @@ function RecordList(props: RecordListProps) {
     </div>
   );
 }
-
-export default RecordList;

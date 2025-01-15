@@ -1,27 +1,7 @@
 import { useEffect, useState } from 'react';
-import Attendance from './ui/Attendance';
-import UserInfo from './ui/UserInfo';
-import EditUserInfo from './ui/EditUserInfo';
+import { Attendance, UserInfo, EditUserInfo, UserData } from './ui';
 import axiosInstance from '@/shared/api/axios';
-import { Field } from '@/shared/types/sharedTypes';
-import ErrorCharacter from '@/shared/ui/ErrorCharacter';
-import LoadingCharacter from '@/shared/ui/LoadingCharacter';
-
-export type Contacts = {
-  email: string;
-  github: string;
-  blog: string;
-  linkedIn: string;
-};
-
-export type UserData = {
-  id: number;
-  camperId: string;
-  name: string;
-  field: Field;
-  contacts: Contacts;
-  profileImage: string;
-};
+import { ErrorCharacter, LoadingCharacter } from '@/shared/ui';
 
 export function ProfilePage() {
   const [userData, setUserData] = useState<UserData | null>(null);

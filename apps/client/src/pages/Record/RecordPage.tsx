@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import RecordInfo from './ui/RecordInfo';
-import RecordList from './ui/RecordList';
-import RecordPlayer from './ui/RecordPlayer';
+import { RecordInfo, RecordList, RecordPlayer } from './ui';
 
 export type RecordData = {
   recordId: number;

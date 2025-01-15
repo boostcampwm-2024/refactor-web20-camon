@@ -1,6 +1,6 @@
 import { IconProps } from '.';
 
-function ScreenShareIconOff({ size = 24, className = '' }: IconProps) {
+function ScreenShareOffIcon({ size = 24, className = '' }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,4 +17,4 @@ function ScreenShareIconOff({ size = 24, className = '' }: IconProps) {
   );
 }
 
-export default ScreenShareIconOff;
+export default ScreenShareOffIcon;

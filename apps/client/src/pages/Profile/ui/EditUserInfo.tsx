@@ -1,18 +1,18 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/shadcn/avatar';
-import { UserData } from '../ProfilePage';
+import { UserData } from './types';
 import { Field } from '@/shared/types/sharedTypes';
 import { Button } from '@/shared/ui/shadcn/button';
 import axiosInstance from '@/shared/api/axios';
-import { useToast } from '@/shared/lib/toast/useToast';
+import { useToast } from '@/shared/lib';
 
 type EditUserInfoProps = {
   userData: UserData | undefined;
   toggleEditing: () => void;
 };
 
-export interface FormInput {
+export type FormInput = {
   camperId: string | undefined;
   name: string | undefined;
   field: Field | undefined;
@@ -20,9 +20,9 @@ export interface FormInput {
   github: string | undefined;
   blog: string | undefined;
   linkedIn: string | undefined;
-}
+};
 
-function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
+export function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
   const [selectedField, setSelectedField] = useState<Field | undefined>(userData?.field);
   const {
     register,
@@ -195,5 +195,3 @@ function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
     </div>
   );
 }
-
-export default EditUserInfo;

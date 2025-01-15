@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
-import IconButton from '@/shared/ui/IconButton';
-import { SearchIcon } from '@/shared/ui/Icons';
+import { IconButton, SearchIcon } from '@/shared/ui';
 
 type SearchProps = {
   onSearch: (keyword: string) => void;
@@ -10,7 +9,7 @@ type FormInput = {
   keyword: string;
 };
 
-function Search({ onSearch }: SearchProps) {
+export function Search({ onSearch }: SearchProps) {
   const { register, handleSubmit } = useForm<FormInput>();
 
   const hanldeSearchSubmit = ({ keyword }: FormInput) => {
@@ -35,5 +34,3 @@ function Search({ onSearch }: SearchProps) {
     </div>
   );
 }
-
-export default Search;

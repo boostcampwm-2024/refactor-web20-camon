@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { WelcomeCharacter } from './WelcomeCharacter';
 import { Button } from '@/shared/ui/shadcn/button';
-import Modal from '@/shared/ui/Modal';
-import { GithubIcon, GoogleIcon } from '@/shared/ui/Icons';
-import { useAuth } from '@/shared/lib/useAuth';
+import { Modal, GithubIcon, GoogleIcon } from '@/shared/ui';
+import { useAuth } from '@/shared/lib';
 import axiosInstance from '@/shared/api/axios';
 
 function LogInButton() {

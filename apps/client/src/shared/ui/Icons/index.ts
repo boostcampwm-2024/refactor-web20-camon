@@ -4,7 +4,6 @@ export type IconProps = {
 };
 
 export { default as BlogIcon } from './BlogIcon';
-export { default as Character } from './Character';
 export { default as CloseIcon } from './CloseIcon';
 export { default as EditIcon } from './EditIcon';
 export { default as ExpandIcon } from './ExpandIcon';
@@ -15,7 +14,7 @@ export { default as MailIcon } from './MailIcon';
 export { default as MicrophoneOffIcon } from './MicrophoneOffIcon';
 export { default as MicrophoneOnIcon } from './MicrophoneOnIcon';
 export { default as ScreenShareIcon } from './ScreenShareIcon';
-export { default as ScreenShareIconOff } from './ScreenShareOffIcon';
+export { default as ScreenShareOffIcon } from './ScreenShareOffIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as GoogleIcon } from './GoogleIcon';
 export { default as PauseIcon } from './PauseIcon';

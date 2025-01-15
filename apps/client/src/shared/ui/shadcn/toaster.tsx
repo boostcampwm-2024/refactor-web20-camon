@@ -1,4 +1,4 @@
-import { useToast } from '@/shared/lib/toast/useToast';
+import { useToast } from '@/shared/lib/useToast';
 import {
   Toast,
   ToastClose,

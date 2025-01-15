@@ -8,7 +8,7 @@ type LiveCardProps = {
   thumbnailUrl: string;
 };
 
-function LiveCard({ liveId, title, userId, profileUrl, thumbnailUrl }: LiveCardProps) {
+export function LiveCard({ liveId, title, userId, profileUrl, thumbnailUrl }: LiveCardProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -46,5 +46,3 @@ function LiveCard({ liveId, title, userId, profileUrl, thumbnailUrl }: LiveCardP
     </button>
   );
 }
-
-export default LiveCard;

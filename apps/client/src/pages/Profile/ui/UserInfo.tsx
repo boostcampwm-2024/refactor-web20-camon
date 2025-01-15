@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import ErrorCharacter from '@/shared/ui/ErrorCharacter';
-import { BlogIcon, EditIcon, GithubIcon, LinkedInIcon, MailIcon } from '@/shared/ui/Icons';
-import LoadingCharacter from '@/shared/ui/LoadingCharacter';
+import { ErrorCharacter, LoadingCharacter, BlogIcon, EditIcon, GithubIcon, LinkedInIcon, MailIcon } from '@/shared/ui';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/shadcn/avatar';
-import { UserData } from '../ProfilePage';
+import { UserData } from './types';
 
 type UserInfoProps = {
   userData: UserData | undefined;
@@ -12,7 +10,7 @@ type UserInfoProps = {
   toggleEditing: () => void;
 };
 
-function UserInfo({ userData, isLoading, error, toggleEditing }: UserInfoProps) {
+export function UserInfo({ userData, isLoading, error, toggleEditing }: UserInfoProps) {
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
@@ -86,5 +84,3 @@ function UserInfo({ userData, isLoading, error, toggleEditing }: UserInfoProps) 
     </div>
   );
 }
-
-export default UserInfo;

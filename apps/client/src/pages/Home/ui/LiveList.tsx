@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import axiosInstance from '@/shared/api/axios';
-import FieldFilter from './FieldFilter';
-import LiveCard from './LiveCard';
-import { LivePreviewInfo } from '@/pages/Home/types/homeTypes';
-import Search from './Search';
+import { FieldFilter } from './FieldFilter';
+import { LiveCard } from './LiveCard';
+import { LivePreviewInfo } from '@/pages/Home/model/homeTypes';
+import { Search } from './Search';
 import { Field } from '@/shared/types/sharedTypes';
-import { useIntersect } from '@/pages/Live/hooks/useIntersect';
+import { useIntersect } from '@/pages/Home/model';
 
 const LIMIT = 12;
 
-function LiveList() {
+export function LiveList() {
   const [liveList, setLiveList] = useState<LivePreviewInfo[]>([]);
   const [hasNext, setHasNext] = useState(true);
   const [cursor, setCursor] = useState<string | null>(null);
@@ -93,5 +93,3 @@ function LiveList() {
     </div>
   );
 }
-
-export default LiveList;

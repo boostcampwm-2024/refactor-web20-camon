@@ -12,7 +12,7 @@ type BroadcastTitleProps = {
   onTitleChange: (newTitle: string) => void;
 };
 
-function BroadcastTitle({ currentTitle, onTitleChange }: BroadcastTitleProps) {
+export function BroadcastTitle({ currentTitle, onTitleChange }: BroadcastTitleProps) {
   const {
     register,
     handleSubmit,
@@ -71,5 +71,3 @@ function BroadcastTitle({ currentTitle, onTitleChange }: BroadcastTitleProps) {
     </div>
   );
 }
-
-export default BroadcastTitle;

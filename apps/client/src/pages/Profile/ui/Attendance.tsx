@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ErrorCharacter from '@/shared/ui/ErrorCharacter';
+import { ErrorCharacter, LoadingCharacter } from '@/shared/ui';
 import { PlayIcon } from '@/shared/ui/Icons';
-import LoadingCharacter from '@/shared/ui/LoadingCharacter';
 import axiosInstance from '@/shared/api/axios';
 
 type AttendanceData = {
@@ -13,7 +12,7 @@ type AttendanceData = {
   isAttendance: boolean;
 };
 
-function Attendance() {
+export function Attendance() {
   const [attendanceList, setAttendanceList] = useState<AttendanceData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
@@ -99,5 +98,3 @@ function Attendance() {
     </div>
   );
 }
-
-export default Attendance;

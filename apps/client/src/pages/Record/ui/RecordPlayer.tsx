@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import LoadingCharacter from '@/shared/ui/LoadingCharacter';
+import { LoadingCharacter } from '@/shared/ui';
 
-type RecordPlayerProps = {
-  video: string;
-};
-
-function RecordPlayer(props: RecordPlayerProps) {
+export function RecordPlayer({ video }: { video: string }) {
   const [isSelectedVideo, setIsSelectedVideo] = useState(false);
-  const { video } = props;
 
   useEffect(() => {
     if (video) {
@@ -40,5 +35,3 @@ function RecordPlayer(props: RecordPlayerProps) {
     </div>
   );
 }
-
-export default RecordPlayer;

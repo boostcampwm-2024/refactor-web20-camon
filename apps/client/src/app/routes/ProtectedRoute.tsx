@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { AuthContext } from '@/app/providers/auth/AuthContext';
+import { AuthContext } from '@/shared/contexts/AuthContext';
 
 function ProtectedRoute() {
   const { isLoggedIn } = useContext(AuthContext);

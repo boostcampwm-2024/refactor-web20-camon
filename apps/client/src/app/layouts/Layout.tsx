@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import Header from '@/shared/ui/Header';
 import { Toaster } from '@/shared/ui/shadcn/toaster';
-import FloatingButton from '@/shared/ui/FloatingButton';
+import { Header, FloatingButton } from '@/shared/ui';
 import { Providers } from '../providers';
 
 export function Layout() {

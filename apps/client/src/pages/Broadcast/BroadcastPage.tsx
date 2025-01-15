@@ -1,10 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import ChatContainer from '@/shared/ui/ChatContainer';
-import ErrorCharacter from '@/shared/ui/ErrorCharacter';
-import { useProducer } from '@/pages/Broadcast/hooks/useProducer';
-import { useRoom } from '@/pages/Broadcast/hooks/useRoom';
-import { useSocket } from '@/shared/lib/socket/useSocket';
-import { useTransport } from '@/shared/lib/mediasoup/useTransport';
+import { ChatContainer, ErrorCharacter } from '@/shared/ui';
+import { useRoom, useProducer, useMedia, useScreenShare, Tracks } from './model';
+import { useSocket, useTransport, useTheme } from '@/shared/lib';
 import { Button } from '@/shared/ui/shadcn/button';
 import {
   MicrophoneOffIcon,
@@ -12,16 +9,10 @@ import {
   VideoOffIcon,
   VideoOnIcon,
   ScreenShareIcon,
-  ScreenShareIconOff,
+  ScreenShareOffIcon,
 } from '@/shared/ui/Icons';
-import BroadcastTitle from './ui/BroadcastTitle';
-import useScreenShare from '@/pages/Broadcast/hooks/useScreenShare';
-import BroadcastPlayer from './ui/BroadcastPlayer';
-import { Tracks } from './types/trackTypes';
-import RecordButton from './ui/RecordButton';
+import { BroadcastPlayer, BroadcastTitle, RecordButton } from './ui';
 import axiosInstance from '@/shared/api/axios';
-import { useMedia } from '@/pages/Broadcast/hooks/useMedia';
-import { useTheme } from '@/shared/lib/useTheme';
 
 const mediaServerUrl = import.meta.env.VITE_MEDIASERVER_URL;
 
@@ -209,7 +200,7 @@ export function BroadcastPage() {
                   {isAudioEnabled ? <MicrophoneOnIcon /> : <MicrophoneOffIcon />}
                 </button>
                 <button type="button" onClick={toggleScreenShare}>
-                  {isScreenSharing ? <ScreenShareIcon /> : <ScreenShareIconOff />}
+                  {isScreenSharing ? <ScreenShareIcon /> : <ScreenShareOffIcon />}
                 </button>
               </div>
             </div>

@@ -8,7 +8,7 @@ type FieldFilterProps = {
   onClickFilterButton: (field: Field) => void;
 };
 
-function FieldFilter({ onClickFilterButton }: FieldFilterProps) {
+export function FieldFilter({ onClickFilterButton }: FieldFilterProps) {
   const [selected, setSelected] = useState<Field>('');
 
   const handleClick = (field: Field) => {
@@ -35,5 +35,3 @@ function FieldFilter({ onClickFilterButton }: FieldFilterProps) {
     </div>
   );
 }
-
-export default FieldFilter;
