@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Button } from '@/shared/ui/shadcn/button';
-import axiosInstance from '@/shared/api/axios';
+import { axiosInstance } from '@/shared/api';
 
 type Inputs = {
   title: string;

@@ -4,9 +4,9 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/shared/u
 import { Input } from '@/shared/ui/shadcn/input';
 import { useSocket } from '@/shared/lib/useSocket';
 import { ErrorCharacter } from '@/shared/ui/character';
-import { AuthContext } from '@/shared/contexts/AuthContext';
+import { AuthContext } from '@/features/auth/model/AuthContext';
 import { SmileIcon } from '@/shared/ui/Icons';
-import ChatEndModal from './ChatEndModal';
+import { ChatEndModal } from './ChatEndModal';
 import { Chat } from './types';
 
 const chatServerUrl = import.meta.env.VITE_CHAT_SERVER_URL;

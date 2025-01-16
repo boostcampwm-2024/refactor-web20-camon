@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Attendance, UserInfo, EditUserInfo, UserData } from './ui';
-import axiosInstance from '@/shared/api/axios';
+import { Attendance, UserInfo } from './ui';
+import { UserData } from './model';
+import { EditUserInfo } from '@/features/editProfile';
+import { axiosInstance } from '@/shared/api';
 import { ErrorCharacter, LoadingCharacter } from '@/shared/ui';
 
 export function ProfilePage() {

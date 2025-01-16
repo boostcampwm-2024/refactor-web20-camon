@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ChatContainer, ErrorCharacter } from '@/shared/ui';
-import { useConsumer } from './model';
+import { ErrorCharacter } from '@/shared/ui';
+import { ChatContainer } from '@/features/chatting';
+import { useConsumer, LivePlayer, LiveCamperInfo } from '@/features/watching';
 import { useSocket, useTransport } from '@/shared/lib';
-import { LivePlayer, LiveCamperInfo } from './ui';
 
 const socketUrl = import.meta.env.VITE_MEDIASERVER_URL;
 

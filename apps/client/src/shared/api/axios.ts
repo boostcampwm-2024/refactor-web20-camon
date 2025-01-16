@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true,
@@ -19,5 +19,3 @@ axiosInstance.interceptors.request.use(
   },
   error => Promise.reject(error),
 );
-
-export default axiosInstance;

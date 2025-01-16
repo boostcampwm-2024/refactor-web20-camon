@@ -1,4 +1,3 @@
-export { ChatContainer } from './chat';
 export { DefaultCharacter, ErrorCharacter, LoadingCharacter, MoveCharacter } from './character';
 export { FloatingButton } from './FloatingButton';
 export { IconButton } from './IconButton';

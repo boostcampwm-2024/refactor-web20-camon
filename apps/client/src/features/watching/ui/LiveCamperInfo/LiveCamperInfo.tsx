@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/shadcn/avatar';
 import { Badge } from '@/shared/ui/shadcn/badge';
-import { useAPI } from '@/shared/lib/useAPI';
+import { useAPI } from '@/shared/api';
 import {
   LoadingCharacter,
   ErrorCharacter,

@@ -5,7 +5,7 @@ import { Modal, CloseIcon } from '@/shared/ui';
 import { Button } from '@/shared/ui/shadcn/button';
 import { useToast } from '@/shared/lib';
 import { AuthContext } from '@/shared/contexts';
-import axiosInstance from '@/shared/api/axios';
+import { axiosInstance } from '@/shared/api';
 import { BookmarkData } from './types';
 
 export function Bookmark() {

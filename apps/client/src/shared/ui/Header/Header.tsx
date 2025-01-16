@@ -1,13 +1,12 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/shadcn/avatar';
-import { cn } from '@/shared/lib/utils';
-import { AuthContext } from '@/shared/contexts/AuthContext';
-import axiosInstance from '@/shared/api/axios';
-import LogInButton from './LogInButton';
+import { cn } from '@/shared/lib';
+import { AuthContext, useAuth } from '@/features/auth';
+import { axiosInstance } from '@/shared/api';
 import { Button } from '@/shared/ui/shadcn/button';
-import { useAuth } from '@/shared/lib/useAuth';
 import { LogoButton } from './LogoButton';
+import { LogInButton } from './LogInButton';
 
 export function Header() {
   const [isCheckedIn, setIsCheckedIn] = useState(false);

@@ -5,7 +5,7 @@ type ChatEndModalProps = {
   setShowModal: (b: boolean) => void;
 };
 
-function ChatEndModal({ setShowModal }: ChatEndModalProps) {
+export function ChatEndModal({ setShowModal }: ChatEndModalProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -24,5 +24,3 @@ function ChatEndModal({ setShowModal }: ChatEndModalProps) {
     </Modal>
   );
 }
-
-export default ChatEndModal;
