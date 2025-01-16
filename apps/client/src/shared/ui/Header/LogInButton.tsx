@@ -3,10 +3,10 @@ import { createPortal } from 'react-dom';
 import { WelcomeCharacter } from './WelcomeCharacter';
 import { Button } from '@/shared/ui/shadcn/button';
 import { Modal, GithubIcon, GoogleIcon } from '@/shared/ui';
-import { useAuth } from '@/shared/lib';
-import axiosInstance from '@/shared/api/axios';
+import { useAuth } from '@/features/auth';
+import { axiosInstance } from '@/shared/api';
 
-function LogInButton() {
+export function LogInButton() {
   const [showModal, setShowModal] = useState(false);
   const { requestLogIn, setLogIn } = useAuth();
 
@@ -71,5 +71,3 @@ function LogInButton() {
     </>
   );
 }
-
-export default LogInButton;

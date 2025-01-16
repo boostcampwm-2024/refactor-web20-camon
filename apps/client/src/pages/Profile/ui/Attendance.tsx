@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ErrorCharacter, LoadingCharacter } from '@/shared/ui';
 import { PlayIcon } from '@/shared/ui/Icons';
-import axiosInstance from '@/shared/api/axios';
+import { axiosInstance } from '@/shared/api';
 
 type AttendanceData = {
   attendanceId: number;

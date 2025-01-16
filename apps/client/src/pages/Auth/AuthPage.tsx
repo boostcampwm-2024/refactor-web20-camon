@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ErrorCharacter } from '@/shared/ui';
-import { useAuth } from '@/shared/lib';
+import { useAuth } from '@/features/auth';
 
 export function AuthPage() {
   const [searchParams] = useSearchParams();

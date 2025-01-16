@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/shadcn/avatar';
-import { UserData } from './types';
+import { UserData } from '@/entities/user';
 import { Field } from '@/shared/types/sharedTypes';
 import { Button } from '@/shared/ui/shadcn/button';
-import axiosInstance from '@/shared/api/axios';
+import { axiosInstance } from '@/shared/api';
 import { useToast } from '@/shared/lib';
 
 type EditUserInfoProps = {

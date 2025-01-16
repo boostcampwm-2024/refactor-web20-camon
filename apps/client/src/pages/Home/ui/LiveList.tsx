@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import axiosInstance from '@/shared/api/axios';
+import { axiosInstance } from '@/shared/api';
 import { FieldFilter } from './FieldFilter';
 import { LiveCard } from './LiveCard';
 import { LivePreviewInfo } from '@/pages/Home/model/homeTypes';

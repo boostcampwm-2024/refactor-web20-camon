@@ -1,18 +1,27 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { ChatContainer, ErrorCharacter } from '@/shared/ui';
-import { useRoom, useProducer, useMedia, useScreenShare, Tracks } from './model';
-import { useSocket, useTransport, useTheme } from '@/shared/lib';
-import { Button } from '@/shared/ui/shadcn/button';
 import {
+  ErrorCharacter,
   MicrophoneOffIcon,
   MicrophoneOnIcon,
   VideoOffIcon,
   VideoOnIcon,
   ScreenShareIcon,
   ScreenShareOffIcon,
-} from '@/shared/ui/Icons';
-import { BroadcastPlayer, BroadcastTitle, RecordButton } from './ui';
-import axiosInstance from '@/shared/api/axios';
+} from '@/shared/ui';
+import {
+  useRoom,
+  useProducer,
+  useMedia,
+  useScreenShare,
+  Tracks,
+  BroadcastPlayer,
+  BroadcastTitle,
+  RecordButton,
+} from '@/features/broadcasting';
+import { ChatContainer } from '@/features/chatting';
+import { useSocket, useTransport, useTheme } from '@/shared/lib';
+import { Button } from '@/shared/ui/shadcn/button';
+import { axiosInstance } from '@/shared/api';
 
 const mediaServerUrl = import.meta.env.VITE_MEDIASERVER_URL;
 

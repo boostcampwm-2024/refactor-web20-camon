@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Logo } from '@/shared/ui/Icons';
-import { DefaultCharacter } from '../character';
+import { DefaultCharacter } from '@/shared/ui';
 
 export function LogoButton() {
   const navigate = useNavigate();

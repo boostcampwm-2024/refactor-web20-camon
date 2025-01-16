@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
-import axiosInstance from '@/shared/api/axios';
+import { axiosInstance } from '@/shared/api';
 
 type APIQueryState<T> = {
   data: T | null;

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { RESOLUTION_OPTIONS } from './resolutionOptions';
-import { Tracks } from '../../model/trackTypes';
+import { Tracks } from '../../../../features/broadcasting/model/trackTypes';
 
 type BroadcastPlayerProps = {
   mediaStream: MediaStream | null;

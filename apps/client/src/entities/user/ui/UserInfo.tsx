@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ErrorCharacter, LoadingCharacter, BlogIcon, EditIcon, GithubIcon, LinkedInIcon, MailIcon } from '@/shared/ui';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/shadcn/avatar';
-import { UserData } from './types';
+import { UserData } from '../model';
 
 type UserInfoProps = {
   userData: UserData | undefined;

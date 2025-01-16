@@ -5,7 +5,7 @@ const initialState = {
   setIsLoggedIn: () => {},
 };
 
-export type AuthContextValue = {
+type AuthContextValue = {
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
