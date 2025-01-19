@@ -1,4 +1,4 @@
-import { Banner, LiveList } from './ui';
+import { Banner, LiveList } from '@/widgets';
 
 export function HomePage() {
   return (

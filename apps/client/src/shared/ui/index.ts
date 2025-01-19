@@ -1,7 +1,6 @@
 export { DefaultCharacter, ErrorCharacter, LoadingCharacter, MoveCharacter } from './character';
 export { FloatingButton } from './FloatingButton';
 export { IconButton } from './IconButton';
-export { Header } from './Header';
 export { Modal } from './Modal';
 export {
   BlogIcon,
