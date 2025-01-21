@@ -11,7 +11,12 @@ import { Chat } from './types';
 
 const chatServerUrl = import.meta.env.VITE_CHAT_SERVER_URL;
 
-export function ChatContainer({ roomId, isProducer }: { roomId: string; isProducer: boolean }) {
+type ChatContainerProps = Readonly<{
+  roomId: string;
+  isProducer: boolean;
+}>;
+
+export function ChatContainer({ roomId, isProducer }: ChatContainerProps) {
   const { isLoggedIn } = useContext(AuthContext);
   // 채팅 방 입장
   const isJoinedRoomRef = useRef(false);

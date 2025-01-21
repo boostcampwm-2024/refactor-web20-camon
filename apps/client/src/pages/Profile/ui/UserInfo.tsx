@@ -3,12 +3,12 @@ import { ErrorCharacter, LoadingCharacter, BlogIcon, EditIcon, GithubIcon, Linke
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/ui/shadcn/avatar';
 import { UserData } from '../model';
 
-type UserInfoProps = {
+type UserInfoProps = Readonly<{
   userData: UserData | undefined;
   isLoading: boolean;
   error: Error | null;
   toggleEditing: () => void;
-};
+}>;
 
 export function UserInfo({ userData, isLoading, error, toggleEditing }: UserInfoProps) {
   const [showLoading, setShowLoading] = useState(false);

@@ -12,7 +12,7 @@ import {
 } from '@/shared/ui';
 import { LiveInfo } from './types';
 
-export function LiveCamperInfo({ liveId }: { liveId: string }) {
+export function LiveCamperInfo({ liveId }: Readonly<{ liveId: string }>) {
   const { data, isLoading, error } = useAPI<LiveInfo>({ url: `v1/broadcasts/${liveId}/info` });
 
   if (error || !data) {

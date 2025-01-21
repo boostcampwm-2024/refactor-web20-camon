@@ -1,6 +1,9 @@
-import { ErrorCharacterProps } from './types';
+type ErrorCharacterProps = Readonly<{
+  size?: number;
+  message?: string;
+}>;
 
-export function ErrorCharacter({ size = 300, message = 'Error' }: ErrorCharacterProps): JSX.Element {
+export function ErrorCharacter({ size = 300, message = 'Error' }: ErrorCharacterProps) {
   return (
     <div style={{ width: size, height: size }} className="flex flex-col items-center">
       <svg viewBox="0 0 200 200" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">

@@ -1,4 +1,4 @@
-import { IconProps } from '.';
+import { IconProps } from './types';
 
 function CloseIcon({ size = 24, className }: IconProps) {
   return (

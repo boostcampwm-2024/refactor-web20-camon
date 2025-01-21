@@ -7,10 +7,10 @@ type Inputs = {
   title: string;
 };
 
-type BroadcastTitleProps = {
+type BroadcastTitleProps = Readonly<{
   currentTitle: string;
   onTitleChange: (newTitle: string) => void;
-};
+}>;
 
 export function BroadcastTitle({ currentTitle, onTitleChange }: BroadcastTitleProps) {
   const {

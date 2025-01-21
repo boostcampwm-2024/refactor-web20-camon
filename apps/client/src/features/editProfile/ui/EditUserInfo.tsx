@@ -7,10 +7,10 @@ import { Button } from '@/shared/ui/shadcn/button';
 import { axiosInstance } from '@/shared/api';
 import { useToast } from '@/shared/lib';
 
-type EditUserInfoProps = {
+type EditUserInfoProps = Readonly<{
   userData: UserData | undefined;
   toggleEditing: () => void;
-};
+}>;
 
 export type FormInput = {
   camperId: string | undefined;

@@ -1,4 +1,4 @@
-import { IconProps } from '.';
+import { IconProps } from './types';
 
 function ThemeIcon({ size = 36, className = '' }: IconProps) {
   return (

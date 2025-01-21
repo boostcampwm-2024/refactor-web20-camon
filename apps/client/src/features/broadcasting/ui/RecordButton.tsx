@@ -9,10 +9,10 @@ type FormInput = {
   title: string;
 };
 
-type RecordButtonProps = {
+type RecordButtonProps = Readonly<{
   socket: Socket | null;
   roomId: string;
-};
+}>;
 
 export function RecordButton({ socket, roomId }: RecordButtonProps) {
   const [isRecording, setIsRecording] = useState(false);

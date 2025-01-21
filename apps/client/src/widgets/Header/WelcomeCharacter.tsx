@@ -1,7 +1,7 @@
-type Props = {
+type Props = Readonly<{
   size?: number;
   className?: string;
-};
+}>;
 
 export function WelcomeCharacter({ size, className }: Props) {
   return (

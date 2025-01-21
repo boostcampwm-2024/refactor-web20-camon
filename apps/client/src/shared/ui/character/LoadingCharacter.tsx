@@ -1,4 +1,8 @@
-export function LoadingCharacter({ size = 300 }: { size?: number }): JSX.Element {
+type LoadingCharacterProps = Readonly<{
+  size?: number;
+}>;
+
+export function LoadingCharacter({ size = 300 }: LoadingCharacterProps) {
   return (
     <div style={{ width: size, height: size }}>
       <svg viewBox="0 0 200 200" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">

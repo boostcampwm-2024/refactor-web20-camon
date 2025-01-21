@@ -1,4 +1,4 @@
-import { IconProps } from '.';
+import { IconProps } from './types';
 
 function GoogleIcon({ size = 60, className = '' }: IconProps) {
   return (
