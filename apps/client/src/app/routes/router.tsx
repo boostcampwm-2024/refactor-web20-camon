@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { HomePage } from '@/pages/Home';
 import { AuthPage } from '@/pages/Auth';
 import { Layout } from '@/app/layouts';
 import ProtectedRoute from './ProtectedRoute';
 import { routerOptions } from './config';
-import { lazy, Suspense } from 'react';
 import { LoadingCharacter } from '@/shared/ui';
 
 const LivePage = lazy(() => import('@/pages/Live'));

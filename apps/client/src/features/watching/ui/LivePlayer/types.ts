@@ -2,7 +2,6 @@ import { Socket } from 'socket.io-client';
 
 export type Errors = {
   socketError: Error | null;
-  transportError: Error | null;
   consumerError: Error | null;
 };
 

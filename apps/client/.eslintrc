@@ -54,6 +54,7 @@
     "import/no-unresolved": "off",
     "import/extensions": ["off"],
     "import/prefer-default-export": "off",
+    "no-restricted-exports": "warn",
 
     // 접근성 관련 규칙
     "jsx-a11y/media-has-caption": "off",

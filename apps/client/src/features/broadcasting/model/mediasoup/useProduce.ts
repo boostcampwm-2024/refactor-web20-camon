@@ -1,7 +1,8 @@
 import { Socket } from 'socket.io-client';
 import { useEffect, useRef, useState } from 'react';
 import { Producer, Transport } from 'mediasoup-client/lib/types';
-import { connectTransport, createDevice, createProducer, getRoomId, getRtpCapabilities } from './produceHelpers';
+import { createProducer, getRoomId } from './produceHelpers';
+import { connectTransport, createDevice, getRtpCapabilities } from '@/shared/lib';
 
 type UseProduceProps = {
   socket: Socket | null;
@@ -43,7 +44,7 @@ export const useProduce = ({ socket, mediaStream }: UseProduceProps): UseProduce
         return;
       }
 
-      const { transport: newTransport, transportInfo } = await connectTransport(socket, device, newRoomId);
+      const { transport: newTransport, transportInfo } = await connectTransport(socket, device, newRoomId, true);
       if (!newTransport || !transportInfo) {
         setError(new Error('transport 연결에 문제가 발생했습니다.'));
         return;

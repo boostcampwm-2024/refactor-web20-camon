@@ -1,8 +1,6 @@
-import { RtpCapabilities } from 'mediasoup-client/lib/RtpParameters';
 import { Socket } from 'socket.io-client';
-import * as mediasoupClient from 'mediasoup-client';
 import { Transport } from 'mediasoup-client/lib/types';
-import { ConnectTransportResponse, TransportInfo } from '@/shared/types/mediasoupTypes';
+import { TransportInfo } from '@/shared/types/mediasoupTypes';
 import { ENCODING_OPTIONS } from './encodingOptions';
 
 export const getRoomId = (socket: Socket): Promise<string> =>
@@ -11,58 +9,6 @@ export const getRoomId = (socket: Socket): Promise<string> =>
       resolve(response.roomId);
     });
   });
-
-export const getRtpCapabilities = async (socket: Socket, roomId: string): Promise<RtpCapabilities> =>
-  new Promise((resolve, reject) => {
-    socket.emit('getRtpCapabilities', { roomId }, (response: { rtpCapabilities: RtpCapabilities }) => {
-      if (response.rtpCapabilities) {
-        resolve(response.rtpCapabilities);
-      } else {
-        reject(new Error('getRtpCapabilities Error: RTP Capabilities를 받아오지 못했습니다.'));
-      }
-    });
-  });
-
-export const createDevice = async (rtpCapabilities: RtpCapabilities) => {
-  const newDevice = new mediasoupClient.Device();
-  await newDevice.load({
-    routerRtpCapabilities: rtpCapabilities,
-  });
-  return newDevice;
-};
-
-export const connectTransport = async (socket: Socket, device: mediasoupClient.Device, roomId: string) => {
-  const transportInfo: TransportInfo = await new Promise(resolve => {
-    socket.emit('createTransport', { roomId, isProducer: true }, (response: TransportInfo) => {
-      resolve(response);
-    });
-  });
-
-  const transport = device.createSendTransport({
-    id: transportInfo.transportId,
-    iceParameters: transportInfo.iceParameters,
-    iceCandidates: transportInfo.iceCandidates,
-    dtlsParameters: transportInfo.dtlsParameters,
-  });
-
-  transport.on('connect', async (parameters, callback) => {
-    socket.emit(
-      'connectTransport',
-      {
-        roomId,
-        dtlsParameters: parameters.dtlsParameters,
-        transportId: transportInfo.transportId,
-      },
-      (response: ConnectTransportResponse) => {
-        if (response.connected) {
-          callback();
-        }
-      },
-    );
-  });
-
-  return { transport, transportInfo };
-};
 
 export const createProducer = async (
   socket: Socket,

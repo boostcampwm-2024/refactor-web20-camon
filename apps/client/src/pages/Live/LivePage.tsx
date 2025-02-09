@@ -2,37 +2,30 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ErrorCharacter } from '@/shared/ui';
 import { ChatContainer } from '@/features/chatting';
-import { useConsumer, LivePlayer, LiveCamperInfo } from '@/features/watching';
-import { useSocket, useTransport } from '@/shared/lib';
+import { useConsume, LivePlayer, LiveCamperInfo } from '@/features/watching';
+import { useSocket } from '@/shared/lib';
 
 const socketUrl = import.meta.env.VITE_MEDIASERVER_URL;
 
 export function LivePage() {
   const { liveId } = useParams<{ liveId: string }>();
-  const { socket, isConnected, socketError } = useSocket(socketUrl);
-  const { transportInfo, device, transportError } = useTransport({
-    socket,
-    roomId: liveId,
-    isProducer: false,
-  });
+  const { socket, socketError } = useSocket(socketUrl);
   const {
     transport,
+    transportId,
     mediastream: mediaStream,
     error: consumerError,
-  } = useConsumer({
+  } = useConsume({
     socket,
-    device,
     roomId: liveId,
-    transportInfo,
-    isConnected,
   });
 
   useEffect(() => {
-    if (!socket || !liveId || !transportInfo || !transport) return undefined;
+    if (!socket || !liveId || !transport) return undefined;
 
     const handleLeaveLive = () => {
-      if (socket && liveId && transportInfo) {
-        socket.emit('leaveBroadcast', { transportId: transportInfo.transportId, roomId: liveId });
+      if (socket && liveId && transportId) {
+        socket.emit('leaveBroadcast', { transportId, roomId: liveId });
       }
 
       socket?.disconnect();
@@ -51,7 +44,7 @@ export function LivePage() {
       handleLeaveLive();
       window.removeEventListener('beforeunload', preventClose);
     };
-  }, [socket, liveId, transportInfo, transport]);
+  }, [socket, liveId, transportId, transport]);
 
   return (
     <div className="flex flex-row w-full h-full gap-10 pb-5">
@@ -62,9 +55,9 @@ export function LivePage() {
           <div className="flex flex-col flex-1 gap-4 ml-8">
             <LivePlayer
               mediaStream={mediaStream}
-              transportId={transportInfo?.transportId}
+              transportId={transportId}
               socket={socket}
-              errors={{ socketError, transportError, consumerError }}
+              errors={{ socketError, consumerError }}
             />
             <div className="flex justify-center items-center h-36 w-full">
               <LiveCamperInfo liveId={liveId} />

@@ -10,7 +10,7 @@ export function LivePlayer({ mediaStream, socket, transportId, errors }: LivePla
   const [videoQuality, setVideoQuality] = useState('720p');
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const { socketError, transportError, consumerError } = errors;
+  const { socketError, consumerError } = errors;
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -19,7 +19,7 @@ export function LivePlayer({ mediaStream, socket, transportId, errors }: LivePla
     }
 
     return () => {
-      if (videoElement && videoElement.srcObject) {
+      if (videoElement?.srcObject) {
         videoElement.srcObject = null;
       }
     };
@@ -54,7 +54,7 @@ export function LivePlayer({ mediaStream, socket, transportId, errors }: LivePla
     await videoRef.current?.requestFullscreen?.();
   };
 
-  if (socketError || transportError || consumerError) {
+  if (socketError || consumerError) {
     return (
       <div className="flex w-full h-full justify-center items-center">
         <ErrorCharacter size={400} message="방송 연결 중 에러가 발생했습니다" />
