@@ -9,8 +9,6 @@ import {
   ScreenShareOffIcon,
 } from '@/shared/ui';
 import {
-  useRoom,
-  useProducer,
   useMedia,
   useScreenShare,
   Tracks,
@@ -19,9 +17,10 @@ import {
   RecordButton,
 } from '@/features/broadcasting';
 import { ChatContainer } from '@/features/chatting';
-import { useSocket, useTransport, useTheme } from '@/shared/lib';
+import { useSocket, useTheme } from '@/shared/lib';
 import { Button } from '@/shared/ui/shadcn/button';
 import { axiosInstance } from '@/shared/api';
+import { useProduce } from '@/features/broadcasting/model';
 
 const mediaServerUrl = import.meta.env.VITE_MEDIASERVER_URL;
 
@@ -30,7 +29,7 @@ export function BroadcastPage() {
   const {
     mediaStream,
     mediaStreamError,
-    isMediaStreamReady,
+    isMediaStreamReady: _,
     isAudioEnabled,
     isVideoEnabled,
     toggleAudio,
@@ -43,21 +42,8 @@ export function BroadcastPage() {
   const tracksRef = useRef<Tracks>({ video: undefined, mediaAudio: undefined, screenAudio: undefined });
   const [isStreamReady, setIsStreamReady] = useState(false);
   // 방송 송출
-  const { socket, isConnected, socketError } = useSocket(mediaServerUrl);
-  const { roomId, roomError } = useRoom(socket, isConnected, isMediaStreamReady);
-  const { transportInfo, device, transportError } = useTransport({ socket, roomId, isProducer: true });
-  const {
-    transport,
-    error: mediasoupError,
-    producers,
-  } = useProducer({
-    socket,
-    mediaStream,
-    isMediaStreamReady,
-    transportInfo,
-    device,
-    roomId,
-  });
+  const { socket, socketError } = useSocket(mediaServerUrl);
+  const { roomId, transport, producers, error: producerError } = useProduce({ socket, mediaStream });
   // 방송 정보
   const [title, setTitle] = useState<string>('');
   // 테마
@@ -153,7 +139,7 @@ export function BroadcastPage() {
     changeTrack();
   }, [isVideoEnabled, isScreenSharing, mediaStream, screenStream, producers]);
 
-  if (socketError || roomError || transportError || screenShareError) {
+  if (socketError || screenShareError) {
     mediaStream?.getTracks().forEach((track: MediaStreamTrack) => track.stop());
     return (
       <div className="flex h-full justify-center items-center">
@@ -164,11 +150,11 @@ export function BroadcastPage() {
 
   return (
     <div className="flex flex-col p-4 h-full">
-      {mediaStreamError || mediasoupError ? (
+      {mediaStreamError || producerError ? (
         <>
           <h2 className="text-display-bold24 text-text-danger">Error</h2>
           {mediaStreamError && <div className="text-display-medium16 text-text-danger">{mediaStreamError.message}</div>}
-          {mediasoupError && <div className="text-display-medium16 text-text-danger">{mediasoupError.message}</div>}
+          {producerError && <div className="text-display-medium16 text-text-danger">{producerError.message}</div>}
         </>
       ) : (
         <>
