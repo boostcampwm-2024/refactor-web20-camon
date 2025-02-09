@@ -9,7 +9,7 @@ export type RecordData = {
 };
 
 export function RecordPage() {
-  const [nowPlaying, setIsNowPlaying] = useState<RecordData>({ recordId: 0, title: '', video: '', date: '' });
+  const [nowPlaying, setNowPlaying] = useState<RecordData>({ recordId: 0, title: '', video: '', date: '' });
 
   return (
     <div className="flex flex-row w-full h-full gap-10">
@@ -18,7 +18,7 @@ export function RecordPage() {
         <RecordInfo title={nowPlaying.title} />
       </div>
       <div className="h-full w-80 pr-5">
-        <RecordList onClickList={setIsNowPlaying} />
+        <RecordList onClickList={setNowPlaying} />
       </div>
     </div>
   );
