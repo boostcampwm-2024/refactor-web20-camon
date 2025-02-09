@@ -109,7 +109,7 @@ export function Bookmark() {
                 <div className="flex flex-col gap-3 w-full">
                   <div className="flex flex-col w-full">
                     <label htmlFor="bookmark-name-input">
-                      사이트명
+                      <span>사이트명</span>
                       <input
                         id="bookmark-name-input"
                         {...register('name', {
@@ -121,7 +121,7 @@ export function Bookmark() {
                   </div>
                   <div className="flex flex-col w-full">
                     <label htmlFor="bookmark-url-input">
-                      URL
+                      <span>URL</span>
                       <input
                         id="bookmark-url-input"
                         {...register('url', {
