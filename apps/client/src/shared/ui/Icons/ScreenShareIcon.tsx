@@ -1,4 +1,4 @@
-import { IconProps } from '.';
+import { IconProps } from './types';
 
 function ScreenShareIcon({ size = 24, className = '' }: IconProps) {
   return (

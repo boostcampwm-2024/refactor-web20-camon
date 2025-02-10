@@ -4,9 +4,9 @@ import { PlayIcon, ErrorCharacter } from '@/shared/ui';
 import { RecordData } from '../RecordPage';
 import { axiosInstance } from '@/shared/api';
 
-type RecordListProps = {
+type RecordListProps = Readonly<{
   onClickList: (data: RecordData) => void;
-};
+}>;
 
 export function RecordList({ onClickList }: RecordListProps) {
   const [recordList, setRecordList] = useState<RecordData[]>([]);

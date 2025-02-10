@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { Modal } from '@/shared/ui';
 
-type ChatEndModalProps = {
+type ChatEndModalProps = Readonly<{
   setShowModal: (b: boolean) => void;
-};
+}>;
 
 export function ChatEndModal({ setShowModal }: ChatEndModalProps) {
   const navigate = useNavigate();

@@ -1,1 +1,1 @@
-export { useConsumer } from './useConsumer';
+export { useConsume } from './useConsume';

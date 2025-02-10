@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { IconButton, SearchIcon } from '@/shared/ui';
 
-type SearchProps = {
+type SearchProps = Readonly<{
   onSearch: (keyword: string) => void;
-};
+}>;
 
 type FormInput = {
   keyword: string;

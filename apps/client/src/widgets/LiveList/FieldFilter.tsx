@@ -4,9 +4,9 @@ import { Field } from '@/shared/types/sharedTypes';
 
 const fields: Field[] = ['WEB', 'AND', 'IOS'];
 
-type FieldFilterProps = {
+type FieldFilterProps = Readonly<{
   onClickFilterButton: (field: Field) => void;
-};
+}>;
 
 export function FieldFilter({ onClickFilterButton }: FieldFilterProps) {
   const [selected, setSelected] = useState<Field>('');

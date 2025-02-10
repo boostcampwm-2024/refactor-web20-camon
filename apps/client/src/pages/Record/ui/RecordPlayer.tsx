@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { LoadingCharacter } from '@/shared/ui';
 
-export function RecordPlayer({ video }: { video: string }) {
+export function RecordPlayer({ video }: Readonly<{ video: string }>) {
   const [isSelectedVideo, setIsSelectedVideo] = useState(false);
 
   useEffect(() => {

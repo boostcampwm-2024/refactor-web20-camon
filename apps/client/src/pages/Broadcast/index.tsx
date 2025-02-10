@@ -1,1 +1,1 @@
-export { BroadcastPage } from './BroadcastPage';
+export { BroadcastPage as default } from './BroadcastPage';

@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
-type LiveCardProps = {
+type LiveCardProps = Readonly<{
   liveId: string;
   title: string;
   userId: string;
   profileUrl?: string;
   thumbnailUrl: string;
-};
+}>;
 
 export function LiveCard({ liveId, title, userId, profileUrl, thumbnailUrl }: LiveCardProps) {
   const navigate = useNavigate();

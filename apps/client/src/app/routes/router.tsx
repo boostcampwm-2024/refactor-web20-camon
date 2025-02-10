@@ -1,13 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { HomePage } from '@pages/Home';
-import { LivePage } from '@pages/Live';
-import { BroadcastPage } from '@pages/Broadcast';
-import { AuthPage } from '@pages/Auth';
-import { RecordPage } from '@pages/Record';
-import { ProfilePage } from '@/pages/Profile';
+import { lazy, Suspense } from 'react';
+import { HomePage } from '@/pages/Home';
+import { AuthPage } from '@/pages/Auth';
 import { Layout } from '@/app/layouts';
 import ProtectedRoute from './ProtectedRoute';
 import { routerOptions } from './config';
+import { LoadingCharacter } from '@/shared/ui';
+
+const LivePage = lazy(() => import('@/pages/Live'));
+const BroadcastPage = lazy(() => import('@/pages/Broadcast'));
+const ProfilePage = lazy(() => import('@/pages/Profile'));
+const RecordPage = lazy(() => import('@/pages/Record'));
 
 export const router = createBrowserRouter(
   [
@@ -21,7 +24,11 @@ export const router = createBrowserRouter(
         },
         {
           path: 'live/:liveId',
-          element: <LivePage />,
+          element: (
+            <Suspense fallback={<LoadingCharacter />}>
+              <LivePage />
+            </Suspense>
+          ),
         },
         {
           path: 'auth',
@@ -33,12 +40,19 @@ export const router = createBrowserRouter(
           children: [
             {
               path: 'profile',
-              element: <ProfilePage />,
+              element: (
+                <Suspense fallback={<LoadingCharacter />}>
+                  <ProfilePage />
+                </Suspense>
+              ),
             },
-
             {
               path: 'record/:attendanceId',
-              element: <RecordPage />,
+              element: (
+                <Suspense fallback={<LoadingCharacter />}>
+                  <RecordPage />
+                </Suspense>
+              ),
             },
           ],
         },
@@ -50,7 +64,11 @@ export const router = createBrowserRouter(
       children: [
         {
           path: '',
-          element: <BroadcastPage />,
+          element: (
+            <Suspense fallback={<LoadingCharacter />}>
+              <BroadcastPage />
+            </Suspense>
+          ),
         },
       ],
     },

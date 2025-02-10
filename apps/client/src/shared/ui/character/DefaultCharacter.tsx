@@ -1,7 +1,7 @@
-type IconProps = {
+type IconProps = Readonly<{
   size?: number;
   className?: string;
-};
+}>;
 
 export function DefaultCharacter({ size = 24, className = '' }: IconProps) {
   return (

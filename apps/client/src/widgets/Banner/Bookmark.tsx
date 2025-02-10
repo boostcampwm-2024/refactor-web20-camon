@@ -71,28 +71,27 @@ export function Bookmark() {
     <>
       {isLoggedIn && (
         <div className="flex flex-col h-full gap-3 p-3">
-          {bookmarkList &&
-            bookmarkList.map(data => (
-              <div
-                className="flex h-14 w-52 bg-surface-alt rounded-xl items-center hover:bg-surface-alt-light"
-                key={data.bookmarkId}
+          {bookmarkList?.map(data => (
+            <div
+              className="flex h-14 w-52 bg-surface-alt rounded-xl items-center hover:bg-surface-alt-light"
+              key={data.bookmarkId}
+            >
+              <button
+                type="button"
+                onClick={() => handleClickBookmarkButton(data.url)}
+                className="flex-1 truncate text-text-strong text-xl relative flex items-center justify-between px-4 py-2"
               >
-                <button
-                  type="button"
-                  onClick={() => handleClickBookmarkButton(data.url)}
-                  className="flex-1 truncate text-text-strong text-xl relative flex items-center justify-between px-4 py-2"
-                >
-                  <span className="truncate flex-1">{data.name}</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={e => handleDeleteBookmark(e, data.bookmarkId)}
-                  className="flex w-9 h-9 items-center p-1 hover:text-text-strong hover:cursor-pointer"
-                >
-                  <CloseIcon size={36} />
-                </button>
-              </div>
-            ))}
+                <span className="truncate flex-1">{data.name}</span>
+              </button>
+              <button
+                type="button"
+                onClick={e => handleDeleteBookmark(e, data.bookmarkId)}
+                className="flex w-9 h-9 items-center p-1 hover:text-text-strong hover:cursor-pointer"
+              >
+                <CloseIcon size={36} />
+              </button>
+            </div>
+          ))}
 
           {bookmarkList.length < 5 && (
             <Button onClick={() => setShowModal(true)} className="h-14 w-52 bg-surface-alt hover:bg-surface-alt-light">
@@ -109,7 +108,7 @@ export function Bookmark() {
                 <div className="flex flex-col gap-3 w-full">
                   <div className="flex flex-col w-full">
                     <label htmlFor="bookmark-name-input">
-                      사이트명
+                      <span>사이트명</span>
                       <input
                         id="bookmark-name-input"
                         {...register('name', {
@@ -121,7 +120,7 @@ export function Bookmark() {
                   </div>
                   <div className="flex flex-col w-full">
                     <label htmlFor="bookmark-url-input">
-                      URL
+                      <span>URL</span>
                       <input
                         id="bookmark-url-input"
                         {...register('url', {

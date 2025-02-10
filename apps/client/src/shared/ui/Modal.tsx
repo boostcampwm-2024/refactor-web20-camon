@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { CloseIcon } from '@/shared/ui/Icons';
 
-type ModalProps = {
+type ModalProps = Readonly<{
   children: React.ReactNode;
   setShowModal: (showModal: boolean) => void;
   modalClassName?: string;
-};
+}>;
 
 export function Modal({ children, setShowModal, modalClassName }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);

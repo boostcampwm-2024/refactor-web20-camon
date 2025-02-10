@@ -7,10 +7,10 @@ import { Button } from '@/shared/ui/shadcn/button';
 import { axiosInstance } from '@/shared/api';
 import { useToast } from '@/shared/lib';
 
-type EditUserInfoProps = {
+type EditUserInfoProps = Readonly<{
   userData: UserData | undefined;
   toggleEditing: () => void;
-};
+}>;
 
 export type FormInput = {
   camperId: string | undefined;
@@ -89,7 +89,7 @@ export function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
             />
           </label>
           <p className="absolute top-10 right-0 justify-end text-text-danger text-display-medium12">
-            {errors.camperId && errors.camperId.message}
+            {errors.camperId?.message}
           </p>
         </div>
         {/* 이름 */}
@@ -104,11 +104,8 @@ export function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
               className="flex-1 h-10 bg-transparent border border-default rounded-md focus:border-bold px-3 text-display-medium16 text-text-default"
             />
           </label>
-          <p className="absolute top-10 right-0 text-text-danger text-display-medium12">
-            {errors.name && errors.name.message}
-          </p>
+          <p className="absolute top-10 right-0 text-text-danger text-display-medium12">{errors.name?.message}</p>
         </div>
-        {/* TODO: 입력 검증 */}
         {/* email */}
         <div className="flex flex-row items-center">
           <label htmlFor="email-input" className="flex flex-row w-full text-text-strong text-display-bold24">
@@ -159,7 +156,8 @@ export function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
           <span id="field-label" className="w-32 text-text-strong text-display-bold24">
             분야
           </span>
-          <div role="group" aria-labelledby="field-label" className="flex flex-1 justify-start gap-4">
+          <fieldset className="flex flex-1 justify-start gap-4">
+            <legend className="sr-only">Select your field</legend>
             <Button
               type="button"
               onClick={() => handleSelectField('WEB')}
@@ -184,7 +182,7 @@ export function EditUserInfo({ userData, toggleEditing }: EditUserInfoProps) {
             <p className="absolute top-10 right-0 text-text-danger text-display-medium12">
               {selectedField === '' && '분야를 입력해주세요'}
             </p>
-          </div>
+          </fieldset>
         </div>
         <div className="flex w-full justify-end">
           <Button type="submit" className="h-10 shrink-0">

@@ -1,8 +1,8 @@
-interface LogoProps {
+type LogoProps = Readonly<{
   height?: number;
   width?: number;
   className?: string;
-}
+}>;
 
 function Logo({ height, width, className = '' }: LogoProps) {
   return (

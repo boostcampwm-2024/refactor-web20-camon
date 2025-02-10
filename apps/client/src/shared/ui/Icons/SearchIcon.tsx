@@ -1,4 +1,4 @@
-import { IconProps } from '.';
+import { IconProps } from './types';
 
 function SearchIcon({ size = 24, className = '' }: IconProps) {
   return (

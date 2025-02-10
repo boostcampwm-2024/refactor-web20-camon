@@ -1,8 +1,3 @@
-export type IconProps = {
-  size?: number;
-  className?: string;
-};
-
 export { default as BlogIcon } from './BlogIcon';
 export { default as CloseIcon } from './CloseIcon';
 export { default as EditIcon } from './EditIcon';

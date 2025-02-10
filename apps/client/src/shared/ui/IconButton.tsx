@@ -1,11 +1,11 @@
-type IconButtonProps = {
+type IconButtonProps = Readonly<{
   children: React.ReactNode;
   title?: string;
   ariaLabel?: string;
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
-};
+}>;
 
 export function IconButton({ children, title, ariaLabel, onClick, disabled, className }: IconButtonProps) {
   return (

@@ -1,4 +1,4 @@
-import { IconProps } from '.';
+import { IconProps } from './types';
 
 function LinkedInIcon({ size = 20, className = '' }: IconProps) {
   return (
